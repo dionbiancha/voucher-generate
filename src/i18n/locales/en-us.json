@@ -1,6 +1,7 @@
 {
   "general": {
-    "welcome": "Welcome to my app",
-    "darkmode": "darkmodeeeeeeee"
+    "Selecione uma logo": "Select a logo",
+    "Nenhum item selecionado": "No items selected",
+    "Prévia": "Preview"
   }
 }
