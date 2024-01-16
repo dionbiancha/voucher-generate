@@ -39,7 +39,7 @@ function Header() {
   return (
     <Stack
       width="100%"
-      direction={["row", "row"]}
+      direction={"row"}
       justifyContent={"space-between"}
       sx={{ marginBottom: "50px" }}
     >
@@ -55,7 +55,7 @@ function Header() {
           PDF
         </Button>
       </ButtonGroup>
-      <Stack width="100%" direction={["row", "row"]} justifyContent={"end"}>
+      <Stack width="100%" direction={"row"} justifyContent={"end"}>
         <Select width="100px" onChange={handleLanguageChange}>
           <option value="pt-BR">PT</option>
           <option value="en-US">EN</option>

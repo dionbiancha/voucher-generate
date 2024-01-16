@@ -1,0 +1,136 @@
+import React, { useState } from "react";
+import {
+  Box,
+  FormControl,
+  FormLabel,
+  Image,
+  Input,
+  Select,
+} from "@chakra-ui/react";
+
+import { useTranslation } from "react-i18next";
+import { usePreview } from "../../context/PreviewContext";
+
+interface ItemListOption {
+  value: string;
+  title: string;
+}
+
+interface LocationProps {
+  name: string;
+  address: string;
+  city: string;
+  state: string;
+  country: string;
+}
+
+function ItemList({ title, value }: ItemListOption) {
+  const { t } = useTranslation();
+  return (
+    <p style={{ margin: "5px" }}>
+      {t(`${title}`)}: <span style={{ fontWeight: 400 }}>{value}</span>
+    </p>
+  );
+}
+
+function Location() {
+  const { showPreview } = usePreview();
+  const { t } = useTranslation();
+  const [formState, setFormState] = useState<LocationProps>({
+    name: "",
+    address: "",
+    city: "",
+    state: "",
+    country: "",
+  });
+
+  const handleChange = (field: keyof LocationProps, value: string) => {
+    setFormState((prevState) => ({
+      ...prevState,
+      [field]: value,
+    }));
+  };
+
+  function isEmpty() {
+    if (
+      formState.address ||
+      formState.city ||
+      formState.country ||
+      formState.name ||
+      formState.state
+    )
+      return false;
+    return true;
+  }
+
+  return (
+    <Box>
+      {!showPreview && (
+        <FormControl>
+          <FormLabel>{t("Localização")}</FormLabel>
+          <Input
+            sx={{ marginY: "5px" }}
+            placeholder={t("Nome")}
+            value={formState.name}
+            onChange={(e) => handleChange("name", e.target.value)}
+          />
+          <Input
+            sx={{ marginY: "5px" }}
+            placeholder={t("Endereço")}
+            value={formState.address}
+            onChange={(e) => handleChange("address", e.target.value)}
+          />
+          <Input
+            sx={{ marginY: "5px" }}
+            placeholder={t("Cidade")}
+            value={formState.city}
+            onChange={(e) => handleChange("city", e.target.value)}
+          />
+          <Input
+            sx={{ marginY: "5px" }}
+            placeholder={t("Estado")}
+            value={formState.state}
+            onChange={(e) => handleChange("state", e.target.value)}
+          />
+          <Input
+            sx={{ marginY: "5px" }}
+            placeholder={t("País")}
+            value={formState.country}
+            onChange={(e) => handleChange("country", e.target.value)}
+          />
+        </FormControl>
+      )}
+
+      {isEmpty() ? (
+        <Box
+          sx={{
+            marginTop: "20px",
+            border: "1px dashed",
+            width: "320px",
+            padding: "5px",
+            borderRadius: "5px",
+            fontSize: "13px",
+          }}
+        >
+          {t("Nenhum localização encontrada")}
+        </Box>
+      ) : (
+        <Box mt={4} style={{ fontWeight: 500 }}>
+          {formState.name && <ItemList title="Nome" value={formState.name} />}
+          {formState.address && (
+            <ItemList title="Endereço" value={formState.address} />
+          )}
+          {formState.city && <ItemList title="Cidade" value={formState.city} />}
+          {formState.state && (
+            <ItemList title="Estado" value={formState.state} />
+          )}
+          {formState.country && (
+            <ItemList title="País" value={formState.country} />
+          )}
+        </Box>
+      )}
+    </Box>
+  );
+}
+
+export default Location;
