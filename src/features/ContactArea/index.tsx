@@ -8,7 +8,6 @@ type Option = {
   value: string;
   label: string;
   phone: string;
-  email: string;
   agency: string;
 };
 
@@ -18,7 +17,6 @@ const optionsLogo: Option[] = [
     label: "Melisa Laura Rojo",
     phone:
       "+55 45 3521-8585 ( APENAS LIGAÇÕES) +55 43 3032-2855 ( WHATSAPP - ATENDIMENTO ELETRÔNICO)",
-    email: "pix@dionei.com",
     agency: "ARKBEDS",
   },
   {
@@ -26,7 +24,6 @@ const optionsLogo: Option[] = [
     label: "Joao das Neves",
     phone:
       "+55 45 3521-8585 ( APENAS LIGAÇÕES) +55 43 3032-2855 ( WHATSAPP - ATENDIMENTO ELETRÔNICO)",
-    email: "pix@dionei.com",
     agency: "ARKBEDS",
   },
   {
@@ -34,7 +31,6 @@ const optionsLogo: Option[] = [
     label: "Piriquito do governo",
     phone:
       "+55 45 3521-8585 ( APENAS LIGAÇÕES) +55 43 3032-2855 ( WHATSAPP - ATENDIMENTO ELETRÔNICO)",
-    email: "pix@dionei.com",
     agency: "ARKBEDS",
   },
 ];
@@ -67,7 +63,7 @@ function ContactArea() {
   };
 
   return (
-    <Box sx={{ maxWidth: "600px" }}>
+    <Box sx={{ maxWidth: "500px" }}>
       {!showPreview && (
         <FormControl>
           <FormLabel>{t("Selecione um contato")}</FormLabel>
@@ -90,7 +86,7 @@ function ContactArea() {
         <Box mt={4} style={{ fontWeight: 500 }}>
           <ItemList title="Agência" value={selectedOptionContact.agency} />
           <ItemList title="Operador" value={selectedOptionContact.value} />
-          <ItemList title="Email" value={selectedOptionContact.email} />
+
           <ItemList title="Emergências" value={selectedOptionContact.phone} />
         </Box>
       ) : (

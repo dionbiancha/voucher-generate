@@ -7,6 +7,7 @@ import {
   VStack,
   Text,
   Stack,
+  FormLabel,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { usePreview } from "../../context/PreviewContext";
@@ -45,7 +46,8 @@ const Information: React.FC = () => {
   };
 
   return (
-    <Stack direction={"column"} sx={{ width: "100%", paddingLeft: "20px" }}>
+    <Stack direction={"column"} sx={{ marginBottom: "30px" }}>
+      <FormLabel sx={{ marginTop: "10px" }}>{t("Informações")}</FormLabel>
       {!showPreview && (
         <Stack direction={"row"}>
           <Input

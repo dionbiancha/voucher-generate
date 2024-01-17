@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Box,
-  FormControl,
-  FormLabel,
-  Image,
-  Input,
-  Select,
-} from "@chakra-ui/react";
+import { Box, FormControl, FormLabel, Input } from "@chakra-ui/react";
 
 import { useTranslation } from "react-i18next";
 import { usePreview } from "../../context/PreviewContext";
@@ -22,6 +15,7 @@ interface LocationProps {
   city: string;
   state: string;
   country: string;
+  link?: string;
 }
 
 function ItemList({ title, value }: ItemListOption) {
@@ -34,7 +28,7 @@ function ItemList({ title, value }: ItemListOption) {
 }
 
 function Location() {
-  const { showPreview } = usePreview();
+  const { showPreview, setQrCodeLink } = usePreview();
   const { t } = useTranslation();
   const [formState, setFormState] = useState<LocationProps>({
     name: "",
@@ -65,14 +59,23 @@ function Location() {
 
   return (
     <Box>
+      <FormLabel>{t("Localização")}</FormLabel>
       {!showPreview && (
         <FormControl>
-          <FormLabel>{t("Localização")}</FormLabel>
           <Input
             sx={{ marginY: "5px" }}
             placeholder={t("Nome")}
             value={formState.name}
             onChange={(e) => handleChange("name", e.target.value)}
+          />
+          <Input
+            sx={{ marginY: "5px" }}
+            placeholder={t("Endereço do Google Maps")}
+            value={formState.link}
+            onChange={(e) => {
+              setQrCodeLink(e.target.value);
+              handleChange("link", e.target.value);
+            }}
           />
           <Input
             sx={{ marginY: "5px" }}
