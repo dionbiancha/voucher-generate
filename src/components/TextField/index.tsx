@@ -4,13 +4,13 @@ import { Box, FormControl, FormLabel, Input, Select } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { usePreview } from "../../context/PreviewContext";
 
-interface TextFieldProps {
+interface TextInputProps {
   title: string;
   placeholder: string;
   emptyText: string;
 }
 
-function TextField({ title, placeholder, emptyText }: TextFieldProps) {
+function TextInput({ title, placeholder, emptyText }: TextInputProps) {
   const { showPreview } = usePreview();
   const { t } = useTranslation();
   const [formState, setFormState] = useState("");
@@ -55,4 +55,4 @@ function TextField({ title, placeholder, emptyText }: TextFieldProps) {
   );
 }
 
-export default TextField;
+export default TextInput;
