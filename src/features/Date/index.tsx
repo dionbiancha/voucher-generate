@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Box, FormControl, FormLabel, Input, Select } from "@chakra-ui/react";
+import { useState } from "react";
+import { Box, FormControl, FormLabel, Input } from "@chakra-ui/react";
 import { format } from "date-fns"; // Importa a função format do date-fns
 
 import { useTranslation } from "react-i18next";

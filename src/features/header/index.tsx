@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Button,
   ButtonGroup,
@@ -22,7 +21,7 @@ function Header() {
   const { i18n, t } = useTranslation();
   const { showPreview, setShowPreview } = usePreview();
 
-  const handleLanguageChange = (event) => {
+  const handleLanguageChange = (event: any) => {
     const selectedLanguage = event.target.value;
     i18n.changeLanguage(selectedLanguage);
   };

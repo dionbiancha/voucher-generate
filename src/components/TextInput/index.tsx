@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Box, FormControl, FormLabel, Input } from "@chakra-ui/react";
 
 import { useTranslation } from "react-i18next";

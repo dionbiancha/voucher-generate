@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, FormControl, FormLabel, Image, Select } from "@chakra-ui/react";
+import { Box, FormControl, FormLabel, Select } from "@chakra-ui/react";
 
 import { useTranslation } from "react-i18next";
 import { usePreview } from "../../context/PreviewContext";
