@@ -1,11 +1,9 @@
 {
   "compilerOptions": {
-    "jsx": "react",
     "composite": true,
-    "skipLibCheck": true,
     "module": "ESNext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true
   },
-  "include": ["vite.config.ts", "src", "serviceWorkerRegistration.ts"]
+  "include": ["vite.config.ts"]
 }
