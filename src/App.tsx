@@ -12,7 +12,6 @@ import Information from "./features/Information";
 import TextInput from "./components/TextInput";
 import QRCode from "react-qr-code";
 import { AddIcon } from "@chakra-ui/icons";
-import { useTranslation } from "react-i18next";
 
 function ContentArea() {
   useEffect(() => {
@@ -56,7 +55,6 @@ function ContentArea() {
 }
 
 function App() {
-  const { t } = useTranslation();
   const { qrCodeLink } = usePreview();
   const [additionalAreas, setAdditionalAreas] = useState<
     Record<string, unknown>[]
