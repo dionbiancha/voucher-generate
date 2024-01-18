@@ -4,14 +4,13 @@ import { Box, Button, Container, Divider, Stack } from "@chakra-ui/react";
 import "./i18n";
 import Header from "./features/header";
 import SelectLogo from "./features/SelectLogo";
-import { usePreview } from "./context/PreviewContext";
 import ContactArea from "./features/ContactArea";
 import Location from "./features/Location";
 import Date from "./features/Date";
 import Information from "./features/Information";
 import TextInput from "./components/TextInput";
-import QRCode from "react-qr-code";
 import { AddIcon } from "@chakra-ui/icons";
+import Product from "./features/Product";
 
 function ContentArea() {
   useEffect(() => {
@@ -23,7 +22,7 @@ function ContentArea() {
       <Stack
         sx={{
           backgroundColor: "#e2e8f01c",
-          width: "350px",
+          width: "500px",
           padding: "15px",
         }}
         direction={"column"}
@@ -39,11 +38,14 @@ function ContentArea() {
         direction={"column"}
       >
         <Information />
+        <Product />
         <TextInput
           title="Politica de Cancelamentos"
           placeholder="Digite suas politica de cancelamentos"
           emptyText="Nenhum dado encontrada"
+          divider
         />
+
         <TextInput
           title="Observações"
           placeholder="Digite suas obervações"
@@ -55,7 +57,6 @@ function ContentArea() {
 }
 
 function App() {
-  const { qrCodeLink } = usePreview();
   const [additionalAreas, setAdditionalAreas] = useState<
     Record<string, unknown>[]
   >([]);
@@ -84,7 +85,6 @@ function App() {
             <ContactArea />
           </Stack>
           <p style={{ fontSize: "40px", fontWeight: "600" }}>Voucher</p>
-          {qrCodeLink && <QRCode size={150} value={qrCodeLink} />}
         </Stack>
         <Divider sx={{ marginY: "30px" }} />
         <ContentArea />

@@ -49,7 +49,7 @@ function SelectLogo() {
           <FormLabel>{t("Selecione uma logo")}</FormLabel>
           <Select
             placeholder={t("Nenhum item selecionado")}
-            width="150px"
+            width="200px"
             onChange={handleSelectLogo}
             value={selectedOptionLogo?.value || ""}
           >
@@ -67,7 +67,7 @@ function SelectLogo() {
           <Image
             src={selectedOptionLogo.imagePreviewUrl}
             alt={`Preview`}
-            boxSize="150px"
+            boxSize="200px"
             objectFit="cover"
           />
         </Box>
@@ -76,7 +76,7 @@ function SelectLogo() {
           sx={{
             marginTop: "20px",
             border: "1px dashed",
-            width: "150px",
+            width: "200px",
             padding: "5px",
             borderRadius: "5px",
             fontSize: "13px",

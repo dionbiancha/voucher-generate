@@ -4,8 +4,6 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 interface PreviewContextProps {
   showPreview: boolean;
   setShowPreview: React.Dispatch<React.SetStateAction<boolean>>;
-  qrCodeLink: string;
-  setQrCodeLink: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const PreviewContext = createContext<PreviewContextProps | undefined>(
@@ -20,12 +18,9 @@ export const PreviewProvider: React.FC<PreviewProviderProps> = ({
   children,
 }) => {
   const [showPreview, setShowPreview] = useState<boolean>(false);
-  const [qrCodeLink, setQrCodeLink] = useState<string>("");
 
   return (
-    <PreviewContext.Provider
-      value={{ showPreview, setShowPreview, setQrCodeLink, qrCodeLink }}
-    >
+    <PreviewContext.Provider value={{ showPreview, setShowPreview }}>
       {children}
     </PreviewContext.Provider>
   );

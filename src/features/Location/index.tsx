@@ -3,6 +3,7 @@ import { Box, FormControl, FormLabel, Input } from "@chakra-ui/react";
 
 import { useTranslation } from "react-i18next";
 import { usePreview } from "../../context/PreviewContext";
+import QRCode from "react-qr-code";
 
 interface ItemListOption {
   value: string;
@@ -28,7 +29,7 @@ function ItemList({ title, value }: ItemListOption) {
 }
 
 function Location() {
-  const { showPreview, setQrCodeLink } = usePreview();
+  const { showPreview } = usePreview();
   const { t } = useTranslation();
   const [formState, setFormState] = useState<LocationProps>({
     name: "",
@@ -47,6 +48,7 @@ function Location() {
 
   function isEmpty() {
     if (
+      formState.link ||
       formState.address ||
       formState.city ||
       formState.country ||
@@ -73,7 +75,6 @@ function Location() {
             placeholder={t("Endereço do Google Maps")}
             value={formState.link}
             onChange={(e) => {
-              setQrCodeLink(e.target.value);
               handleChange("link", e.target.value);
             }}
           />
@@ -104,7 +105,7 @@ function Location() {
         </FormControl>
       )}
 
-      {isEmpty() ? (
+      {isEmpty() && !showPreview ? (
         <Box
           sx={{
             marginTop: "20px",
@@ -129,6 +130,13 @@ function Location() {
           )}
           {formState.country && (
             <ItemList title="País" value={formState.country} />
+          )}
+          {formState.link && (
+            <QRCode
+              size={300}
+              style={{ paddingTop: "20px" }}
+              value={formState.link}
+            />
           )}
         </Box>
       )}

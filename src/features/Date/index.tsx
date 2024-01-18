@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Box, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Stack,
+} from "@chakra-ui/react";
 import { format } from "date-fns"; // Importa a função format do date-fns
 
 import { useTranslation } from "react-i18next";
@@ -26,11 +33,16 @@ function ItemList({ title, value }: ItemListOption) {
 
 function DateSelect() {
   const { showPreview } = usePreview();
+  const [isInputDisabled, setIsInputDisabled] = useState(false);
   const { t } = useTranslation();
   const [formState, setFormState] = useState<DateProps>({
     from: "",
     to: "",
   });
+
+  const handleEnableInput = () => {
+    setIsInputDisabled(!isInputDisabled);
+  };
 
   const handleChange = (field: keyof DateProps, value: string) => {
     setFormState((prevState) => ({
@@ -44,18 +56,27 @@ function DateSelect() {
     return true;
   }
 
+  if (showPreview && isInputDisabled) return <></>;
+
   return (
     <Box sx={{ marginBottom: "30px" }}>
-      <FormLabel>{t("Data")}</FormLabel>
+      <Stack direction={"row"} justifyContent={"space-between"}>
+        <FormLabel>{t("Data")}</FormLabel>
+        <Button h="1.75rem" size="sm" onClick={handleEnableInput}>
+          {isInputDisabled ? "Exibir" : "Esconder"}
+        </Button>
+      </Stack>
       {!showPreview && (
         <FormControl>
           <Input
+            disabled={isInputDisabled}
             type="date"
             sx={{ marginY: "5px" }}
             value={formState.from}
             onChange={(e) => handleChange("from", e.target.value)}
           />
           <Input
+            disabled={isInputDisabled}
             type="date"
             sx={{ marginY: "5px" }}
             value={formState.to}
@@ -64,7 +85,7 @@ function DateSelect() {
         </FormControl>
       )}
 
-      {isEmpty() ? (
+      {isEmpty() && !showPreview ? (
         <Box
           sx={{
             marginTop: "20px",
@@ -78,7 +99,10 @@ function DateSelect() {
           {t("Nenhum data encontrada")}
         </Box>
       ) : (
-        <Box mt={4} style={{ fontWeight: 500 }}>
+        <Box
+          mt={4}
+          style={{ fontWeight: 500, opacity: isInputDisabled ? 0.3 : 1 }}
+        >
           {formState.from && (
             <ItemList
               title="De"

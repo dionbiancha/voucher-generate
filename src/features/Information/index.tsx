@@ -8,6 +8,7 @@ import {
   Text,
   Stack,
   FormLabel,
+  Divider,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { usePreview } from "../../context/PreviewContext";
@@ -46,7 +47,7 @@ const Information: React.FC = () => {
   };
 
   return (
-    <Stack direction={"column"} sx={{ marginBottom: "30px" }}>
+    <Stack direction={"column"}>
       <FormLabel sx={{ marginTop: "10px" }}>{t("Informações")}</FormLabel>
       {!showPreview && (
         <Stack direction={"row"}>
@@ -113,6 +114,7 @@ const Information: React.FC = () => {
           </Stack>
         </Box>
       )}
+      <Divider sx={{ marginY: "30px" }} />
     </Stack>
   );
 };
