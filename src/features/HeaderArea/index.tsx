@@ -16,7 +16,7 @@ import {
 import html2pdf from "html2pdf.js";
 import { usePreview } from "../../context/PreviewContext";
 
-function Header() {
+function HeaderArea() {
   const { colorMode, toggleColorMode } = useColorMode();
   const { i18n, t } = useTranslation();
   const { showPreview, setShowPreview } = usePreview();
@@ -68,4 +68,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default HeaderArea;

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import { Box, Button, Container, Divider, Stack } from "@chakra-ui/react";
 import "./i18n";
-import Header from "./features/Header";
+import HeaderArea from "./features/HeaderArea";
 import SelectLogo from "./features/SelectLogo";
 import ContactArea from "./features/ContactArea";
 import Location from "./features/Location";
@@ -78,7 +78,7 @@ function App() {
   return (
     <Stack direction={"column"} padding="30px" alignItems={"center"}>
       <Container maxW="1200px">
-        <Header />
+        <HeaderArea />
       </Container>
       <Container id="pdf" maxW="1200px" paddingX="30px">
         <Stack direction={"row"} justifyContent={"space-between"}>
