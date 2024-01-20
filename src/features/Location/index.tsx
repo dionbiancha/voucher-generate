@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Box, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Stack,
+} from "@chakra-ui/react";
 
 import { useTranslation } from "react-i18next";
 import { usePreview } from "../../context/PreviewContext";
@@ -30,6 +37,7 @@ function ItemList({ title, value }: ItemListOption) {
 
 function Location() {
   const { showPreview } = usePreview();
+  const [isInputDisabled, setIsInputDisabled] = useState(false);
   const { t } = useTranslation();
   const [formState, setFormState] = useState<LocationProps>({
     name: "",
@@ -46,6 +54,10 @@ function Location() {
     }));
   };
 
+  const handleEnableInput = () => {
+    setIsInputDisabled(!isInputDisabled);
+  };
+
   function isEmpty() {
     if (
       formState.link ||
@@ -59,44 +71,61 @@ function Location() {
     return true;
   }
 
+  if (showPreview && isInputDisabled) return <></>;
+
   return (
     <Box>
-      <FormLabel>{t("Localização")}</FormLabel>
+      <Stack direction={"row"} justifyContent={"space-between"}>
+        <FormLabel sx={{ opacity: isInputDisabled ? 0.3 : 1 }}>
+          {t("Localização")}
+        </FormLabel>
+        {!showPreview && (
+          <Button h="1.75rem" size="sm" onClick={handleEnableInput}>
+            {isInputDisabled ? "Exibir" : "Esconder"}
+          </Button>
+        )}
+      </Stack>
       {!showPreview && (
         <FormControl>
           <Input
+            disabled={isInputDisabled}
             sx={{ marginY: "5px" }}
             placeholder={t("Nome")}
             value={formState.name}
             onChange={(e) => handleChange("name", e.target.value)}
           />
           <Input
+            disabled={isInputDisabled}
             sx={{ marginY: "5px" }}
-            placeholder={t("Endereço do Google Maps")}
+            placeholder={t("Link QR Code")}
             value={formState.link}
             onChange={(e) => {
               handleChange("link", e.target.value);
             }}
           />
           <Input
+            disabled={isInputDisabled}
             sx={{ marginY: "5px" }}
             placeholder={t("Endereço")}
             value={formState.address}
             onChange={(e) => handleChange("address", e.target.value)}
           />
           <Input
+            disabled={isInputDisabled}
             sx={{ marginY: "5px" }}
             placeholder={t("Cidade")}
             value={formState.city}
             onChange={(e) => handleChange("city", e.target.value)}
           />
           <Input
+            disabled={isInputDisabled}
             sx={{ marginY: "5px" }}
             placeholder={t("Estado")}
             value={formState.state}
             onChange={(e) => handleChange("state", e.target.value)}
           />
           <Input
+            disabled={isInputDisabled}
             sx={{ marginY: "5px" }}
             placeholder={t("País")}
             value={formState.country}
@@ -105,21 +134,28 @@ function Location() {
         </FormControl>
       )}
 
-      {isEmpty() && !showPreview ? (
-        <Box
-          sx={{
-            marginTop: "20px",
-            border: "1px dashed",
-            width: "320px",
-            padding: "5px",
-            borderRadius: "5px",
-            fontSize: "13px",
-          }}
-        >
-          {t("Nenhum localização encontrada")}
-        </Box>
+      {isEmpty() ? (
+        isInputDisabled ? (
+          <></>
+        ) : (
+          <Box
+            sx={{
+              marginTop: "20px",
+              border: "1px dashed",
+              width: "320px",
+              padding: "5px",
+              borderRadius: "5px",
+              fontSize: "13px",
+            }}
+          >
+            {t("Nenhuma localização encontrada")}
+          </Box>
+        )
       ) : (
-        <Box mt={4} style={{ fontWeight: 500 }}>
+        <Box
+          mt={4}
+          style={{ fontWeight: 500, opacity: isInputDisabled ? 0.3 : 1 }}
+        >
           {formState.name && <ItemList title="Nome" value={formState.name} />}
           {formState.address && (
             <ItemList title="Endereço" value={formState.address} />

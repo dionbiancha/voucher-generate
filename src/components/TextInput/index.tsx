@@ -58,7 +58,7 @@ function TextInput({ title, placeholder, emptyText, divider }: TextInputProps) {
                 size="sm"
                 onClick={handleEnableInput}
               >
-                {isInputDisabled ? "Exibir" : "Esconder"}
+                {isInputDisabled ? t("Exibir") : t("Esconder")}
               </Button>
             </InputRightElement>
           </InputGroup>

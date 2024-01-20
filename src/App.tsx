@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import { Box, Button, Container, Divider, Stack } from "@chakra-ui/react";
 import "./i18n";
-import Header from "./features/header";
+import Header from "./features/Header";
 import SelectLogo from "./features/SelectLogo";
 import ContactArea from "./features/ContactArea";
 import Location from "./features/Location";
@@ -40,15 +40,15 @@ function ContentArea() {
         <Information />
         <Product />
         <TextInput
-          title="Politica de Cancelamentos"
-          placeholder="Digite suas politica de cancelamentos"
-          emptyText="Nenhum dado encontrada"
+          title="Política de cancelamento"
+          placeholder="Digite sua política de cancelamento"
+          emptyText="Nenhum dado encontrado"
           divider
         />
 
         <TextInput
           title="Observações"
-          placeholder="Digite suas obervações"
+          placeholder="Digite suas observações"
           emptyText="Nenhuma observação encontrada"
         />
       </Stack>

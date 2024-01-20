@@ -7,7 +7,7 @@ import {
   Input,
   Stack,
 } from "@chakra-ui/react";
-import { format } from "date-fns"; // Importa a função format do date-fns
+import { addDays, format } from "date-fns"; // Importa a função format do date-fns
 
 import { useTranslation } from "react-i18next";
 import { usePreview } from "../../context/PreviewContext";
@@ -61,10 +61,14 @@ function DateSelect() {
   return (
     <Box sx={{ marginBottom: "30px" }}>
       <Stack direction={"row"} justifyContent={"space-between"}>
-        <FormLabel>{t("Data")}</FormLabel>
-        <Button h="1.75rem" size="sm" onClick={handleEnableInput}>
-          {isInputDisabled ? "Exibir" : "Esconder"}
-        </Button>
+        <FormLabel sx={{ opacity: isInputDisabled ? 0.3 : 1 }}>
+          {t("Data")}
+        </FormLabel>
+        {!showPreview && (
+          <Button h="1.75rem" size="sm" onClick={handleEnableInput}>
+            {isInputDisabled ? "Exibir" : "Esconder"}
+          </Button>
+        )}
       </Stack>
       {!showPreview && (
         <FormControl>
@@ -85,19 +89,23 @@ function DateSelect() {
         </FormControl>
       )}
 
-      {isEmpty() && !showPreview ? (
-        <Box
-          sx={{
-            marginTop: "20px",
-            border: "1px dashed",
-            width: "320px",
-            padding: "5px",
-            borderRadius: "5px",
-            fontSize: "13px",
-          }}
-        >
-          {t("Nenhum data encontrada")}
-        </Box>
+      {isEmpty() ? (
+        isInputDisabled ? (
+          <></>
+        ) : (
+          <Box
+            sx={{
+              marginTop: "20px",
+              border: "1px dashed",
+              width: "320px",
+              padding: "5px",
+              borderRadius: "5px",
+              fontSize: "13px",
+            }}
+          >
+            {t("Nenhuma data encontrada")}
+          </Box>
+        )
       ) : (
         <Box
           mt={4}
@@ -106,13 +114,13 @@ function DateSelect() {
           {formState.from && (
             <ItemList
               title="De"
-              value={format(new Date(formState.from), "dd/MM/yyyy")}
+              value={format(addDays(new Date(formState.from), 1), "dd/MM/yyyy")}
             />
           )}
           {formState.to && (
             <ItemList
               title="Até"
-              value={format(new Date(formState.to), "dd/MM/yyyy")}
+              value={format(addDays(new Date(formState.to), 1), "dd/MM/yyyy")}
             />
           )}
         </Box>
