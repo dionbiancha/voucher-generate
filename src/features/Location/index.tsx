@@ -81,7 +81,7 @@ function Location() {
         </FormLabel>
         {!showPreview && (
           <Button h="1.75rem" size="sm" onClick={handleEnableInput}>
-            {isInputDisabled ? "Exibir" : "Esconder"}
+            {isInputDisabled ? t("Exibir") : t("Esconder")}
           </Button>
         )}
       </Stack>
