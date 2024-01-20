@@ -68,7 +68,7 @@ const Information: React.FC = () => {
           </Select>
 
           <Button width="330px" onClick={handleAddPerson}>
-            Adicionar Pessoa
+            {t("Adicionar Pessoa")}
           </Button>
         </Stack>
       )}
