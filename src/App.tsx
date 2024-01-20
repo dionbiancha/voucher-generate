@@ -11,6 +11,7 @@ import Information from "./features/Information";
 import TextInput from "./components/TextInput";
 import { AddIcon } from "@chakra-ui/icons";
 import Product from "./features/Product";
+import { usePreview } from "./context/PreviewContext";
 
 function ContentArea() {
   useEffect(() => {
@@ -57,6 +58,7 @@ function ContentArea() {
 }
 
 function App() {
+  const { showPreview } = usePreview();
   const [additionalAreas, setAdditionalAreas] = useState<
     Record<string, unknown>[]
   >([]);
@@ -93,47 +95,51 @@ function App() {
         <Container key={index} id={`pdf${index}`} maxW="1200px" paddingX="30px">
           <Divider sx={{ marginY: "30px" }} />
           <ContentArea />
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginTop: "20px",
-              border: "1px dashed",
-              width: "100%",
-              maxWidth: "1140px",
-              padding: "20px",
-              borderRadius: "5px",
-              fontSize: "13px",
-            }}
-          >
-            <Button
-              onClick={() => removeAdditionalArea(index)}
-              colorScheme="red"
+          {!showPreview && (
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop: "20px",
+                border: "1px dashed",
+                width: "100%",
+                maxWidth: "1140px",
+                padding: "20px",
+                borderRadius: "5px",
+                fontSize: "13px",
+              }}
             >
-              Excluir
-            </Button>
-          </Box>
+              <Button
+                onClick={() => removeAdditionalArea(index)}
+                colorScheme="red"
+              >
+                Excluir
+              </Button>
+            </Box>
+          )}
         </Container>
       ))}
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          marginTop: "20px",
-          border: "1px dashed",
-          width: "100%",
-          maxWidth: "1140px",
-          padding: "20px",
-          borderRadius: "5px",
-          fontSize: "13px",
-        }}
-      >
-        <Button size={"lg"} onClick={addAdditionalArea} colorScheme="gray">
-          <AddIcon />
-        </Button>
-      </Box>
+      {!showPreview && (
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: "20px",
+            border: "1px dashed",
+            width: "100%",
+            maxWidth: "1140px",
+            padding: "20px",
+            borderRadius: "5px",
+            fontSize: "13px",
+          }}
+        >
+          <Button size={"lg"} onClick={addAdditionalArea} colorScheme="gray">
+            <AddIcon />
+          </Button>
+        </Box>
+      )}
     </Stack>
   );
 }
