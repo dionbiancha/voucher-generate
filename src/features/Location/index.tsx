@@ -10,7 +10,6 @@ import {
 
 import { useTranslation } from "react-i18next";
 import { usePreview } from "../../context/PreviewContext";
-import QRCode from "react-qr-code";
 
 interface ItemListOption {
   value: string;
@@ -36,7 +35,7 @@ function ItemList({ title, value }: ItemListOption) {
 }
 
 function Location() {
-  const { showPreview } = usePreview();
+  const { showPreview, setShowQRCODE } = usePreview();
   const [isInputDisabled, setIsInputDisabled] = useState(false);
   const { t } = useTranslation();
   const [formState, setFormState] = useState<LocationProps>({
@@ -101,6 +100,7 @@ function Location() {
             value={formState.link}
             onChange={(e) => {
               handleChange("link", e.target.value);
+              setShowQRCODE(e.target.value);
             }}
           />
           <Input
@@ -166,13 +166,6 @@ function Location() {
           )}
           {formState.country && (
             <ItemList title="País" value={formState.country} />
-          )}
-          {formState.link && (
-            <QRCode
-              size={300}
-              style={{ paddingTop: "20px" }}
-              value={formState.link}
-            />
           )}
         </Box>
       )}

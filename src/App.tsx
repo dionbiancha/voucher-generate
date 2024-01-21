@@ -1,19 +1,29 @@
 import { useEffect, useState } from "react";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-import { Box, Button, Container, Divider, Stack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Container,
+  Divider,
+  FormControl,
+  Stack,
+} from "@chakra-ui/react";
 import "./i18n";
 import HeaderArea from "./features/HeaderArea";
 import SelectLogo from "./features/SelectLogo";
 import ContactArea from "./features/ContactArea";
 import Location from "./features/Location";
-import Date from "./features/Date";
 import Information from "./features/Information";
 import TextInput from "./components/TextInput";
 import { AddIcon } from "@chakra-ui/icons";
 import Product from "./features/Product";
 import { usePreview } from "./context/PreviewContext";
+import DateInput from "./components/DateInput";
+import QRCode from "react-qr-code";
+import SelectConsultant from "./features/SelectConsultant";
 
 function ContentArea() {
+  const { showQRCODE } = usePreview();
   useEffect(() => {
     serviceWorkerRegistration.register();
   }, []);
@@ -28,8 +38,30 @@ function ContentArea() {
         }}
         direction={"column"}
       >
-        <Date />
+        <FormControl mb={5}>
+          <TextInput
+            title="Número de confirmação"
+            placeholder="Digite o número de confirmação"
+            emptyText="Nenhum número encontrado"
+          />
+        </FormControl>
+
+        <DateInput title="De" />
+        <DateInput title="Até" sx={{ marginBottom: "50px" }} />
+
         <Location />
+        <SelectConsultant />
+        <DateInput
+          title="Data de criação do voucher"
+          sx={{ marginBottom: "30px" }}
+        />
+        {showQRCODE && (
+          <QRCode
+            size={320}
+            style={{ paddingTop: "20px" }}
+            value={showQRCODE}
+          />
+        )}
       </Stack>
       <Stack
         sx={{
@@ -102,7 +134,7 @@ function App() {
                 alignItems: "center",
                 justifyContent: "center",
                 marginTop: "20px",
-                border: "1px dashed",
+                border: "1px dashed red",
                 width: "100%",
                 maxWidth: "1140px",
                 padding: "20px",

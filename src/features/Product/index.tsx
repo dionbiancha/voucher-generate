@@ -82,9 +82,9 @@ function Product() {
         <>
           <FormControl mt={10}>
             <TextInput
-              title="Tipo de serviço"
-              placeholder="Preencha seu tipo de serviço"
-              emptyText="Nenhum dado encontrado"
+              title="Título"
+              placeholder="Preencha seu titulo"
+              emptyText="Nenhum titulo encontrado"
             />
           </FormControl>
 
