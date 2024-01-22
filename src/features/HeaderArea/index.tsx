@@ -14,7 +14,7 @@ import {
   ViewOffIcon,
 } from "@chakra-ui/icons";
 import html2pdf from "html2pdf.js";
-import { usePreview } from "../../context/PreviewContext";
+import { usePreview } from "../../context/DataContext";
 
 function HeaderArea() {
   const { colorMode, toggleColorMode } = useColorMode();

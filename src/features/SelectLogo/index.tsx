@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, FormControl, FormLabel, Image, Select } from "@chakra-ui/react";
 
 import { useTranslation } from "react-i18next";
-import { usePreview } from "../../context/PreviewContext";
+import { usePreview } from "../../context/DataContext";
 
 type Option = {
   value: string;

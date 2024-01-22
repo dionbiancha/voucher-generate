@@ -11,16 +11,23 @@ import {
 } from "@chakra-ui/react";
 
 import { useTranslation } from "react-i18next";
-import { usePreview } from "../../context/PreviewContext";
+import { usePreview } from "../../context/DataContext";
 
 interface TextInputProps {
   title: string;
   placeholder: string;
   emptyText: string;
   divider?: boolean;
+  bold?: boolean;
 }
 
-function TextInput({ title, placeholder, emptyText, divider }: TextInputProps) {
+function TextInput({
+  title,
+  placeholder,
+  emptyText,
+  divider,
+  bold,
+}: TextInputProps) {
   const { showPreview } = usePreview();
   const { t } = useTranslation();
   const [formState, setFormState] = useState("");
@@ -83,7 +90,14 @@ function TextInput({ title, placeholder, emptyText, divider }: TextInputProps) {
           </Box>
         )
       ) : (
-        <Box sx={{ opacity: isInputDisabled ? 0.3 : 1 }} mt={4}>
+        <Box
+          sx={{
+            fontSize: bold ? "30px" : "",
+            fontWeight: bold ? "600" : "",
+            opacity: isInputDisabled ? 0.3 : 1,
+          }}
+          mt={4}
+        >
           {formState}
         </Box>
       )}

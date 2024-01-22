@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import {
-  Box,
   Button,
   Container,
   Divider,
@@ -13,17 +12,16 @@ import HeaderArea from "./features/HeaderArea";
 import SelectLogo from "./features/SelectLogo";
 import ContactArea from "./features/ContactArea";
 import Location from "./features/Location";
-import Information from "./features/Information";
 import TextInput from "./components/TextInput";
 import { AddIcon } from "@chakra-ui/icons";
 import Product from "./features/Product";
-import { usePreview } from "./context/PreviewContext";
+import { usePreview } from "./context/DataContext";
 import DateInput from "./components/DateInput";
 import QRCode from "react-qr-code";
 import SelectConsultant from "./features/SelectConsultant";
 
 function ContentArea() {
-  const { showQRCODE } = usePreview();
+  const { showQRCODE, selectType } = usePreview();
   useEffect(() => {
     serviceWorkerRegistration.register();
   }, []);
@@ -43,13 +41,14 @@ function ContentArea() {
             title="Número de confirmação"
             placeholder="Digite o número de confirmação"
             emptyText="Nenhum número encontrado"
+            bold
           />
         </FormControl>
 
         <DateInput title="De" />
         <DateInput title="Até" sx={{ marginBottom: "50px" }} />
+        {selectType !== "Service" && <Location />}
 
-        <Location />
         <SelectConsultant />
         <DateInput
           title="Data de criação do voucher"
@@ -63,28 +62,8 @@ function ContentArea() {
           />
         )}
       </Stack>
-      <Stack
-        sx={{
-          width: "100%",
-          paddingLeft: "20px",
-        }}
-        direction={"column"}
-      >
-        <Information />
-        <Product />
-        <TextInput
-          title="Política de cancelamento"
-          placeholder="Digite sua política de cancelamento"
-          emptyText="Nenhum dado encontrado"
-          divider
-        />
 
-        <TextInput
-          title="Observações"
-          placeholder="Digite suas observações"
-          emptyText="Nenhuma observação encontrada"
-        />
-      </Stack>
+      <Product />
     </Stack>
   );
 }
@@ -128,49 +107,32 @@ function App() {
           <Divider sx={{ marginY: "30px" }} />
           <ContentArea />
           {!showPreview && (
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                marginTop: "20px",
-                border: "1px dashed red",
-                width: "100%",
-                maxWidth: "1140px",
-                padding: "20px",
-                borderRadius: "5px",
-                fontSize: "13px",
-              }}
-            >
+            <>
+              <Divider sx={{ marginY: "30px" }} />
               <Button
+                width="100%"
                 onClick={() => removeAdditionalArea(index)}
                 colorScheme="red"
+                paddingY="25px"
               >
                 Excluir
               </Button>
-            </Box>
+            </>
           )}
         </Container>
       ))}
       {!showPreview && (
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginTop: "20px",
-            border: "1px dashed",
-            width: "100%",
-            maxWidth: "1140px",
-            padding: "20px",
-            borderRadius: "5px",
-            fontSize: "13px",
-          }}
+        <Button
+          mt="15px"
+          maxW="1140px"
+          width="100%"
+          size={"lg"}
+          onClick={addAdditionalArea}
+          colorScheme="gray"
+          paddingY="25px"
         >
-          <Button size={"lg"} onClick={addAdditionalArea} colorScheme="gray">
-            <AddIcon />
-          </Button>
-        </Box>
+          <AddIcon />
+        </Button>
       )}
     </Stack>
   );

@@ -3,7 +3,7 @@ import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import App from "./App";
 import theme from "./theme";
 import "./i18n";
-import { PreviewProvider } from "./context/PreviewContext";
+import { DataProvider } from "./context/DataContext";
 
 const rootElement = document.getElementById("root");
 
@@ -11,9 +11,9 @@ if (rootElement) {
   createRoot(rootElement).render(
     <ChakraProvider theme={theme}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      <PreviewProvider>
+      <DataProvider>
         <App />
-      </PreviewProvider>
+      </DataProvider>
     </ChakraProvider>
   );
 } else {

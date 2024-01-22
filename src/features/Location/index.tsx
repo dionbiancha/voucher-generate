@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 
 import { useTranslation } from "react-i18next";
-import { usePreview } from "../../context/PreviewContext";
+import { usePreview } from "../../context/DataContext";
 
 interface ItemListOption {
   value: string;
