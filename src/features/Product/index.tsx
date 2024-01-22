@@ -184,7 +184,10 @@ function Product() {
         paddingLeft: "20px",
       }}
     >
-      <Box sx={{ fontSize: "30px" }}>{`${t("Produto")} 1`}</Box>
+      {!showPreview && (
+        <Box sx={{ fontSize: "30px" }}>{`${t("Produto")} 1`}</Box>
+      )}
+
       <ProductItem />
       {additionalAreas.map((_, index) => (
         <>
@@ -194,16 +197,18 @@ function Product() {
             alignItems={"center"}
             marginBottom={"30px"}
           >
-            <Box sx={{ fontSize: "30px" }}>{`${t("Produto")} ${
-              index + 2
-            }`}</Box>
             {!showPreview && (
-              <Button
-                onClick={() => removeAdditionalArea(index)}
-                colorScheme="red"
-              >
-                Excluir
-              </Button>
+              <>
+                <Box sx={{ fontSize: "30px" }}>{`${t("Produto")} ${
+                  index + 2
+                }`}</Box>
+                <Button
+                  onClick={() => removeAdditionalArea(index)}
+                  colorScheme="red"
+                >
+                  Excluir
+                </Button>
+              </>
             )}
           </Stack>
           <ProductItem />

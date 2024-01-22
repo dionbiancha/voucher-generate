@@ -49,7 +49,7 @@ function ContentArea() {
 
         <DateInput title="De" />
         <DateInput title="Até" sx={{ marginBottom: "50px" }} />
-        {selectType !== "Service" && <Location />}
+        {selectType !== "Serviço" && <Location />}
 
         <SelectConsultant />
         <DateInput
@@ -100,6 +100,7 @@ function App() {
         alignItems: "center",
         justifyContent: "center",
         width: "100%",
+
         backgroundImage: selectBackground,
         backgroundSize: "cover", // ou "100% 100%"
         backgroundRepeat: "no-repeat",
@@ -112,6 +113,7 @@ function App() {
           backgroundColor: isLight() ? "#FFFFFF" : "#1A202C",
           color: isLight() ? "#000000" : "#FFFFFF",
         }}
+        width="100%"
         maxW="1200px"
         direction={"column"}
         justifyContent={"center"}
