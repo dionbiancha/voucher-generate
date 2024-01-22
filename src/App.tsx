@@ -3,7 +3,6 @@ import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import {
   Box,
   Button,
-  Container,
   Divider,
   FormControl,
   Stack,
@@ -34,7 +33,8 @@ function ContentArea() {
       <Stack
         sx={{
           backgroundColor: "#e2e8f01c",
-          width: "500px",
+          maxWidth: "350px",
+          width: "100%",
           padding: "15px",
         }}
         direction={"column"}
@@ -113,18 +113,17 @@ function App() {
         sx={{
           backgroundColor: isLight() ? "#FFFFFF" : "#1A202C",
           color: isLight() ? "#000000" : "#FFFFFF",
+          maxWidth: "1200px",
         }}
         width="100%"
-        maxW="1200px"
         direction={"column"}
         justifyContent={"center"}
         padding="30px"
         alignItems={"center"}
       >
-        <Container maxW="1200px">
-          <HeaderArea />
-        </Container>
-        <Container id="pdf" maxW="1200px" paddingX="10px">
+        <HeaderArea />
+
+        <Box id="pdf">
           <Stack direction={"row"} justifyContent={"space-between"}>
             <Stack direction={"row"} spacing={"10px"}>
               <SelectLogo />
@@ -134,14 +133,9 @@ function App() {
           </Stack>
           <Divider sx={{ marginY: "30px" }} />
           <ContentArea />
-        </Container>
+        </Box>
         {additionalAreas.map((_, index) => (
-          <Container
-            key={index}
-            id={`pdf${index}`}
-            maxW="1200px"
-            paddingX="30px"
-          >
+          <Box key={index} id={`pdf${index}`}>
             <Divider sx={{ marginY: "30px", border: "1px dashed #EDF2F7" }} />
             <ContentArea />
             {!showPreview && (
@@ -157,7 +151,7 @@ function App() {
                 </Button>
               </>
             )}
-          </Container>
+          </Box>
         ))}
         {!showPreview && (
           <Button

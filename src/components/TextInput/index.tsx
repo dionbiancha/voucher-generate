@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
   Box,
-  FormControl,
   FormLabel,
   Input,
   InputGroup,
@@ -19,6 +18,7 @@ interface TextInputProps {
   emptyText: string;
   divider?: boolean;
   bold?: boolean;
+  isTextArea?: boolean;
 }
 
 function TextInput({
@@ -27,6 +27,7 @@ function TextInput({
   emptyText,
   divider,
   bold,
+  isTextArea,
 }: TextInputProps) {
   const { showPreview } = usePreview();
   const { t } = useTranslation();
@@ -46,30 +47,40 @@ function TextInput({
       </FormLabel>
 
       {!showPreview && (
-        <FormControl>
-          <InputGroup size="md">
+        <InputGroup>
+          {isTextArea ? (
             <Input
-              type="text"
-              pr="4.5rem"
+              as="textarea"
+              resize="vertical"
               sx={{ marginY: "5px" }}
               placeholder={t(`${placeholder}`)}
               value={formState}
               onChange={(e) => setFormState(e.target.value)}
               isDisabled={isInputDisabled}
             />
-            <InputRightElement width="4.5rem">
-              <Button
-                h="1.75rem"
-                mt="2"
-                mr="2"
-                size="sm"
-                onClick={handleEnableInput}
-              >
-                {isInputDisabled ? t("Exibir") : t("Esconder")}
-              </Button>
-            </InputRightElement>
-          </InputGroup>
-        </FormControl>
+          ) : (
+            <Input
+              type="text"
+              sx={{ marginY: "5px" }}
+              placeholder={t(`${placeholder}`)}
+              value={formState}
+              onChange={(e) => setFormState(e.target.value)}
+              isDisabled={isInputDisabled}
+            />
+          )}
+
+          <InputRightElement width="4.5rem">
+            <Button
+              h="1.75rem"
+              mt="2"
+              mr="2"
+              size="sm"
+              onClick={handleEnableInput}
+            >
+              {isInputDisabled ? t("Exibir") : t("Esconder")}
+            </Button>
+          </InputRightElement>
+        </InputGroup>
       )}
 
       {!formState ? (

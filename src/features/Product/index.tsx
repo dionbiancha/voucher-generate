@@ -68,7 +68,7 @@ function ProductItem() {
   };
 
   return (
-    <Box>
+    <Box sx={{ maxWidth: "700px", width: "100%" }}>
       <Information />
       <FormControl>
         <FormLabel>{t("Tipo")}</FormLabel>
@@ -93,6 +93,7 @@ function ProductItem() {
         <>
           <FormControl mt={10}>
             <TextInput
+              isTextArea
               title="Tipo de quarto"
               placeholder="Preencha o tipo do quarto"
               emptyText="Nenhum dado encontrado"
@@ -100,6 +101,7 @@ function ProductItem() {
           </FormControl>
           <FormControl mt={10}>
             <TextInput
+              isTextArea
               title="Regime da hospedagem"
               placeholder="Preencha o regime da hospedagem"
               emptyText="Nenhum dado encontrado"
@@ -108,6 +110,7 @@ function ProductItem() {
 
           <FormControl mt={10}>
             <TextInput
+              isTextArea
               title="Detalhes da hospedagem"
               placeholder="Preencha os detalhes da hospedagem"
               emptyText="Nenhum dado encontrado"
@@ -120,6 +123,7 @@ function ProductItem() {
         <>
           <FormControl mt={10}>
             <TextInput
+              isTextArea
               title="Título"
               placeholder="Preencha seu titulo"
               emptyText="Nenhum titulo encontrado"
@@ -128,6 +132,7 @@ function ProductItem() {
 
           <FormControl mt={10}>
             <TextInput
+              isTextArea
               title="Regime de serviço"
               placeholder="Preencha seu regime de serviço"
               emptyText="Nenhum dado encontrado"
@@ -136,6 +141,7 @@ function ProductItem() {
 
           <FormControl mt={10}>
             <TextInput
+              isTextArea
               title="Detalhes do serviço"
               placeholder="Preencha os detalhes do serviço"
               emptyText="Nenhum dado encontrado"
@@ -145,12 +151,14 @@ function ProductItem() {
       )}
       <Box sx={{ marginY: "30px" }} />
       <TextInput
+        isTextArea
         title="Política de cancelamento"
         placeholder="Digite sua política de cancelamento"
         emptyText="Nenhum dado encontrado"
       />
       <Box sx={{ marginY: "30px" }} />
       <TextInput
+        isTextArea
         title="Observações"
         placeholder="Digite suas observações"
         emptyText="Nenhuma observação encontrada"
@@ -180,6 +188,7 @@ function Product() {
     <Box
       sx={{
         width: "100%",
+
         paddingLeft: "20px",
       }}
     >
