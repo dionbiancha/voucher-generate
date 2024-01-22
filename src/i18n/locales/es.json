@@ -1,6 +1,6 @@
 {
   "general": {
-    "Selecione uma logo": "Seleccionar un logotipo",
+    "Selecione uma logo": "Seleccione un logotipo",
     "Nenhum item selecionado": "Ningún elemento seleccionado",
     "Prévia": "Vista previa",
     "Data": "Fecha",
@@ -9,11 +9,11 @@
     "Até": "Hasta",
     "Política de cancelamento": "Política de cancelación",
     "Observações": "Observaciones",
-    "Digite suas observações": "Introduce tus observaciones",
+    "Digite suas observações": "Ingrese sus observaciones",
     "Nenhuma observação encontrada": "No se encontraron observaciones",
     "Nenhum dado encontrado": "No se encontraron datos",
     "Nenhuma localização encontrada": "No se encontró ninguna ubicación",
-    "Selecione um contato": "Seleccionar un contacto",
+    "Selecione um contato": "Seleccione un contacto",
     "Nenhum contato selecionado": "Ningún contacto seleccionado",
     "Agência": "Agencia",
     "Operador": "Operador",
@@ -35,6 +35,17 @@
     "Endereço": "Dirección",
     "Cidade": "Ciudad",
     "Estado": "Estado",
-    "País": "País"
+    "País": "País",
+    "Produto": "Producto",
+    "Tipo": "Tipo",
+    "Adicionar produto": "Agregar producto",
+    "Nenhuma data encontrada": "No se encontró ninguna fecha",
+    "Nenhum número encontrado": "No se encontró ningún número",
+    "Nenhum consultor selecionado": "No se seleccionó ningún consultor",
+    "Data de criação do voucher": "Fecha de creación del voucher",
+    "Digite o número de confirmação": "Ingrese el número de confirmación",
+    "Produto deletado com sucesso": "Producto eliminado con éxito",
+    "Passageiro deletado com sucesso": "Pasajero eliminado con éxito",
+    "Voucher deletado com sucesso": "Voucher eliminado con éxito"
   }
 }

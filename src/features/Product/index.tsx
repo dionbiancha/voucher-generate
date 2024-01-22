@@ -223,7 +223,7 @@ function Product() {
                   onClick={() => removeAdditionalArea(index)}
                   colorScheme="red"
                 >
-                  Excluir
+                  {t("Excluir")}
                 </Button>
               </>
             )}

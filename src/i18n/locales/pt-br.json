@@ -35,6 +35,17 @@
     "Endereço": "Endereço",
     "Cidade": "Cidade",
     "Estado": "Estado",
-    "País": "País"
+    "País": "País",
+    "Produto": "Produto",
+    "Tipo": "Tipo",
+    "Adicionar produto": "Adicionar produto",
+    "Nenhuma data encontrada": "Nenhuma data encontrada",
+    "Nenhum número encontrado": "Nenhum número encontrado",
+    "Nenhum consultor selecionado": "Nenhum consultor selecionado",
+    "Data de criação do voucher": "Data de criação do voucher",
+    "Digite o número de confirmação": "Digite o número de confirmação",
+    "Produto deletado com sucesso": "Produto deletado com sucesso",
+    "Passageiro deletado com sucesso": "Passageiro deletado com sucesso",
+    "Voucher deletado com sucesso": "Voucher deletado com sucesso"
   }
 }

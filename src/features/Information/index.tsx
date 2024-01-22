@@ -46,7 +46,7 @@ const Information: React.FC = () => {
     updatedPeopleList.splice(index, 1);
     setPeopleList(updatedPeopleList);
     toast({
-      title: "Passageiro deletado com sucesso!",
+      title: t("Passageiro deletado com sucesso!"),
       position: "top-right",
       status: "success",
       duration: 3000,
@@ -71,8 +71,8 @@ const Information: React.FC = () => {
             value={ageGroup}
             onChange={(e) => setAgeGroup(e.target.value as "adult" | "child")}
           >
-            <option value="adult">Adulto</option>
-            <option value="child">Criança</option>
+            <option value="adult">{t("Adulto")}</option>
+            <option value="child">{t("Criança")}</option>
           </Select>
 
           <Button width="330px" onClick={handleAddPerson}>

@@ -1,7 +1,7 @@
 {
   "general": {
     "Selecione uma logo": "Select a logo",
-    "Nenhum item selecionado": "No items selected",
+    "Nenhum item selecionado": "No item selected",
     "Prévia": "Preview",
     "Data": "Date",
     "Localização": "Location",
@@ -9,9 +9,9 @@
     "Até": "To",
     "Política de cancelamento": "Cancellation policy",
     "Observações": "Observations",
+    "Digite suas observações": "Enter your observations",
     "Nenhuma observação encontrada": "No observations found",
     "Nenhum dado encontrado": "No data found",
-    "Digite suas observações": "Enter your observations",
     "Nenhuma localização encontrada": "No location found",
     "Selecione um contato": "Select a contact",
     "Nenhum contato selecionado": "No contact selected",
@@ -35,6 +35,17 @@
     "Endereço": "Address",
     "Cidade": "City",
     "Estado": "State",
-    "País": "Country"
+    "País": "Country",
+    "Produto": "Product",
+    "Tipo": "Type",
+    "Adicionar produto": "Add product",
+    "Nenhuma data encontrada": "No date found",
+    "Nenhum número encontrado": "No number found",
+    "Nenhum consultor selecionado": "No consultant selected",
+    "Data de criação do voucher": "Voucher creation date",
+    "Digite o número de confirmação": "Enter the confirmation number",
+    "Produto deletado com sucesso": "Product deleted successfully",
+    "Passageiro deletado com sucesso": "Passenger deleted successfully",
+    "Voucher deletado com sucesso": "Voucher deleted successfully"
   }
 }

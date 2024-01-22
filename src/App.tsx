@@ -22,6 +22,7 @@ import { usePreview } from "./context/DataContext";
 import DateInput from "./components/DateInput";
 import QRCode from "react-qr-code";
 import SelectConsultant from "./features/SelectConsultant";
+import { useTranslation } from "react-i18next";
 
 function ContentArea() {
   const { selectType } = usePreview();
@@ -74,6 +75,7 @@ function ContentArea() {
 }
 
 function App() {
+  const { t } = useTranslation();
   const { colorMode } = useColorMode();
   const toast = useToast();
   const { showPreview, selectBackground } = usePreview();
@@ -88,7 +90,7 @@ function App() {
   const removeAdditionalArea = (index: number) => {
     setAdditionalAreas((prevAreas) => prevAreas.filter((_, i) => i !== index));
     toast({
-      title: "Voucher deletado com sucesso!",
+      title: t("Voucher deletado com sucesso!"),
       status: "success",
       position: "top-right",
       duration: 3000,
@@ -142,7 +144,7 @@ function App() {
             <SelectLogo />
             <ContactArea />
           </Stack>
-          <Box sx={{ marginY: "30px" }} />
+          <Box sx={{ marginY: "50px" }} />
           <ContentArea />
         </Box>
         {additionalAreas.map((_, index) => (
@@ -158,7 +160,7 @@ function App() {
                   colorScheme="red"
                   paddingY="25px"
                 >
-                  Excluir
+                  {t("Excluir")}
                 </Button>
               </>
             )}
