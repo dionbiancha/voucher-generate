@@ -1,18 +1,6 @@
-import {
-  Button,
-  ButtonGroup,
-  Select,
-  Stack,
-  useColorMode,
-} from "@chakra-ui/react";
+import { Button, ButtonGroup, Select, Stack } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
-import {
-  DownloadIcon,
-  MoonIcon,
-  SunIcon,
-  ViewIcon,
-  ViewOffIcon,
-} from "@chakra-ui/icons";
+import { DownloadIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import html2pdf from "html2pdf.js";
 import { usePreview } from "../../context/DataContext";
 import ImageModal from "../ImageBackground";
@@ -20,7 +8,6 @@ import { useEffect, useState } from "react";
 import SettingsIcon from "@mui/icons-material/Settings";
 
 function HeaderArea() {
-  const { colorMode, toggleColorMode } = useColorMode();
   const { i18n, t } = useTranslation();
   const { showPreview, setShowPreview, setSelectBackground } = usePreview();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,10 +20,6 @@ function HeaderArea() {
     const selectedLanguage = event.target.value;
     i18n.changeLanguage(selectedLanguage);
   };
-
-  function isLight() {
-    return colorMode === "light";
-  }
 
   const handleDownload = () => {
     const config = {
@@ -82,9 +65,6 @@ function HeaderArea() {
           <option value="en-US">EN</option>
           <option value="es-ES">ES</option>
         </Select>
-        {/* <Button onClick={toggleColorMode}>
-          {isLight() ? <MoonIcon /> : <SunIcon />}
-        </Button> */}
         <Button onClick={() => setIsModalOpen(true)}>
           <SettingsIcon />
         </Button>
