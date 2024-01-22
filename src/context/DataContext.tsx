@@ -8,6 +8,8 @@ interface DataContextProps {
   setShowQRCODE: React.Dispatch<React.SetStateAction<string>>;
   selectType: string;
   setSelectType: React.Dispatch<React.SetStateAction<string>>;
+  selectBackground: string;
+  setSelectBackground: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const DataContext = createContext<DataContextProps | undefined>(undefined);
@@ -20,6 +22,7 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
   const [showPreview, setShowPreview] = useState<boolean>(false);
   const [showQRCODE, setShowQRCODE] = useState<string>("");
   const [selectType, setSelectType] = useState<string>("");
+  const [selectBackground, setSelectBackground] = useState<string>("");
 
   return (
     <DataContext.Provider
@@ -30,6 +33,8 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
         setShowQRCODE,
         setSelectType,
         selectType,
+        setSelectBackground,
+        selectBackground,
       }}
     >
       {children}

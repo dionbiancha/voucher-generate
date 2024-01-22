@@ -9,12 +9,12 @@ const rootElement = document.getElementById("root");
 
 if (rootElement) {
   createRoot(rootElement).render(
-    <ChakraProvider theme={theme}>
-      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      <DataProvider>
+    <DataProvider>
+      <ChakraProvider theme={theme}>
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <App />
-      </DataProvider>
-    </ChakraProvider>
+      </ChakraProvider>
+    </DataProvider>
   );
 } else {
   console.error("Elemento com id 'root' não encontrado no DOM.");

@@ -89,7 +89,7 @@ function ProductItem() {
         {IconSelect(formData.type)}
       </FormControl>
 
-      {formData.type === "hotel" && (
+      {formData.type === "Hotel" && (
         <>
           <FormControl mt={10}>
             <TextInput
@@ -116,7 +116,7 @@ function ProductItem() {
         </>
       )}
 
-      {formData.type === "service" && (
+      {formData.type === "Service" && (
         <>
           <FormControl mt={10}>
             <TextInput

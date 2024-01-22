@@ -15,12 +15,20 @@ import {
 } from "@chakra-ui/icons";
 import html2pdf from "html2pdf.js";
 import { usePreview } from "../../context/DataContext";
+import ImageModal from "../ImageBackground";
+import { useEffect, useState } from "react";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 function HeaderArea() {
   const { colorMode, toggleColorMode } = useColorMode();
   const { i18n, t } = useTranslation();
-  const { showPreview, setShowPreview } = usePreview();
+  const { showPreview, setShowPreview, setSelectBackground } = usePreview();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const handleSelectImage = (imageUrl: string) => {
+    setSelectBackground(imageUrl);
+    localStorage.setItem("selectBackground", imageUrl);
+  };
   const handleLanguageChange = (event: any) => {
     const selectedLanguage = event.target.value;
     i18n.changeLanguage(selectedLanguage);
@@ -34,6 +42,13 @@ function HeaderArea() {
     const element = document.getElementById("pdf"); // Substitua 'conteudo' pelo ID do elemento que você quer converter para PDF
     html2pdf(element);
   };
+
+  useEffect(() => {
+    const savedImage = localStorage.getItem("selectBackground");
+    if (savedImage) {
+      setSelectBackground(savedImage);
+    }
+  });
 
   return (
     <Stack
@@ -63,7 +78,15 @@ function HeaderArea() {
         <Button onClick={toggleColorMode}>
           {isLight() ? <MoonIcon /> : <SunIcon />}
         </Button>
+        <Button onClick={() => setIsModalOpen(true)}>
+          <SettingsIcon />
+        </Button>
       </Stack>
+      <ImageModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSelectImage={handleSelectImage}
+      />
     </Stack>
   );
 }
