@@ -1,26 +1,26 @@
 {
-  "name": "Minha Aplicação",
-  "short_name": "MinhaApp",
-  "description": "Descrição da minha aplicação.",
+  "name": "Voucher Arkbeds",
+  "short_name": "Voucher",
+  "description": "",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#003366",
   "icons": [
     {
-      "src": "/icons/icon-144.png",
-      "type": "image/png",
+      "src": "/icon.jpg",
+      "type": "image/jpg",
       "sizes": "144x144",
       "purpose": "any"
     },
     {
-      "src": "/icons/icon-512.png",
-      "type": "image/png",
+      "src": "/icon.jpg",
+      "type": "image/jpg",
       "sizes": "512x512"
     },
     {
-      "src": "/icons/icon.png",
-      "type": "image/png",
+      "src": "/icon.jpg",
+      "type": "image/jpg",
       "sizes": "192x192",
       "purpose": "maskable any"
     }

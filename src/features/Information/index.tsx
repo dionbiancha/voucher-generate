@@ -8,6 +8,7 @@ import {
   Text,
   Stack,
   FormLabel,
+  useToast,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { usePreview } from "../../context/DataContext";
@@ -19,6 +20,7 @@ interface Person {
 }
 
 const Information: React.FC = () => {
+  const toast = useToast();
   const { t } = useTranslation();
   const { showPreview } = usePreview();
   const [name, setName] = useState<string>("");
@@ -43,6 +45,13 @@ const Information: React.FC = () => {
     const updatedPeopleList = [...peopleList];
     updatedPeopleList.splice(index, 1);
     setPeopleList(updatedPeopleList);
+    toast({
+      title: "Passageiro deletado com sucesso!",
+      position: "top-right",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
   };
 
   return (

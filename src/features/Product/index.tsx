@@ -7,6 +7,7 @@ import {
   FormLabel,
   Select,
   Stack,
+  useToast,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { usePreview } from "../../context/DataContext";
@@ -171,6 +172,7 @@ function ProductItem() {
 
 function Product() {
   const { t } = useTranslation();
+  const toast = useToast();
   const { showPreview } = usePreview();
   const [additionalAreas, setAdditionalAreas] = useState<
     Record<string, unknown>[]
@@ -182,6 +184,13 @@ function Product() {
 
   const removeAdditionalArea = (index: number) => {
     setAdditionalAreas((prevAreas) => prevAreas.filter((_, i) => i !== index));
+    toast({
+      title: "Produto deletado com sucesso!",
+      position: "top-right",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
   };
 
   return (

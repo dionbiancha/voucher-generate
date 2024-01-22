@@ -5,8 +5,10 @@ import {
   Button,
   Divider,
   FormControl,
+  Image,
   Stack,
   useColorMode,
+  useToast,
 } from "@chakra-ui/react";
 import "./i18n";
 import HeaderArea from "./features/HeaderArea";
@@ -39,13 +41,6 @@ function ContentArea() {
         }}
         direction={"column"}
       >
-        {linkCode && (
-          <QRCode
-            size={150}
-            style={{ paddingBottom: "20px" }}
-            value={linkCode}
-          />
-        )}
         <FormControl mb={5}>
           <TextInput
             title="Número de confirmação"
@@ -64,6 +59,13 @@ function ContentArea() {
           title="Data de criação do voucher"
           sx={{ marginBottom: "30px" }}
         />
+        {linkCode && (
+          <QRCode
+            size={200}
+            style={{ paddingBottom: "20px" }}
+            value={linkCode}
+          />
+        )}
       </Stack>
 
       <Product />
@@ -73,6 +75,7 @@ function ContentArea() {
 
 function App() {
   const { colorMode } = useColorMode();
+  const toast = useToast();
   const { showPreview, selectBackground } = usePreview();
   const [additionalAreas, setAdditionalAreas] = useState<
     Record<string, unknown>[]
@@ -84,6 +87,13 @@ function App() {
 
   const removeAdditionalArea = (index: number) => {
     setAdditionalAreas((prevAreas) => prevAreas.filter((_, i) => i !== index));
+    toast({
+      title: "Voucher deletado com sucesso!",
+      status: "success",
+      position: "top-right",
+      duration: 3000,
+      isClosable: true,
+    });
   };
 
   function isLight() {
@@ -101,7 +111,6 @@ function App() {
         alignItems: "center",
         justifyContent: "center",
         width: "100%",
-
         backgroundImage: selectBackground,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
@@ -113,8 +122,8 @@ function App() {
         sx={{
           backgroundColor: isLight() ? "#FFFFFF" : "#1A202C",
           color: isLight() ? "#000000" : "#FFFFFF",
-          maxWidth: "1200px",
         }}
+        maxWidth="1200px"
         width="100%"
         direction={"column"}
         justifyContent={"center"}
@@ -123,15 +132,17 @@ function App() {
       >
         <HeaderArea />
 
-        <Box id="pdf">
+        <Box maxWidth="1200px" width="100%" id="pdf">
           <Stack direction={"row"} justifyContent={"space-between"}>
-            <Stack direction={"row"} spacing={"10px"}>
-              <SelectLogo />
-              <ContactArea />
-            </Stack>
+            <Image sx={{ width: "200px" }} src={"logos/arkbeds.png"} />
             <p style={{ fontSize: "40px", fontWeight: "600" }}>Voucher</p>
           </Stack>
-          <Divider sx={{ marginY: "30px" }} />
+          <Divider sx={{ marginY: "30px", border: "1px dashed #EDF2F7" }} />
+          <Stack direction={"row"} spacing={"10px"}>
+            <SelectLogo />
+            <ContactArea />
+          </Stack>
+          <Box sx={{ marginY: "30px" }} />
           <ContentArea />
         </Box>
         {additionalAreas.map((_, index) => (

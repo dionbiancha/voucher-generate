@@ -68,7 +68,7 @@ function HeaderArea() {
         <Button
           onClick={() => setShowPreview(!showPreview)}
           rightIcon={showPreview ? <ViewIcon /> : <ViewOffIcon />}
-          colorScheme="blue"
+          colorScheme="green"
         >
           {t("Prévia")}
         </Button>
@@ -82,9 +82,9 @@ function HeaderArea() {
           <option value="en-US">EN</option>
           <option value="es-ES">ES</option>
         </Select>
-        <Button onClick={toggleColorMode}>
+        {/* <Button onClick={toggleColorMode}>
           {isLight() ? <MoonIcon /> : <SunIcon />}
-        </Button>
+        </Button> */}
         <Button onClick={() => setIsModalOpen(true)}>
           <SettingsIcon />
         </Button>
