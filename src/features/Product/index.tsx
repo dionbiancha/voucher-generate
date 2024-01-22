@@ -143,21 +143,20 @@ function ProductItem() {
           </FormControl>
         </>
       )}
-      <Divider sx={{ marginY: "30px" }} />
+      <Box sx={{ marginY: "30px" }} />
       <TextInput
         title="Política de cancelamento"
         placeholder="Digite sua política de cancelamento"
         emptyText="Nenhum dado encontrado"
-        divider
       />
-
+      <Box sx={{ marginY: "30px" }} />
       <TextInput
         title="Observações"
         placeholder="Digite suas observações"
         emptyText="Nenhuma observação encontrada"
       />
 
-      <Divider sx={{ marginY: "30px" }} />
+      <Divider sx={{ marginY: "30px", border: "1px dashed #EDF2F7" }} />
     </Box>
   );
 }

@@ -87,7 +87,7 @@ function DateInput({ title, sx }: DateInputProps) {
               sx={{
                 marginTop: "20px",
                 border: "1px dashed",
-                width: "320px",
+                width: "100%",
                 padding: "5px",
                 borderRadius: "5px",
                 fontSize: "13px",

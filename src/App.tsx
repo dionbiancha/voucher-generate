@@ -23,13 +23,14 @@ import QRCode from "react-qr-code";
 import SelectConsultant from "./features/SelectConsultant";
 
 function ContentArea() {
-  const { showQRCODE, selectType } = usePreview();
+  const { selectType } = usePreview();
+  const [linkCode, setLinkCode] = useState("");
   useEffect(() => {
     serviceWorkerRegistration.register();
   }, []);
 
   return (
-    <Stack direction={"row"} justifyContent={"space-between"}>
+    <Stack width="100%" direction={"row"} justifyContent={"space-between"}>
       <Stack
         sx={{
           backgroundColor: "#e2e8f01c",
@@ -38,6 +39,13 @@ function ContentArea() {
         }}
         direction={"column"}
       >
+        {linkCode && (
+          <QRCode
+            size={150}
+            style={{ paddingBottom: "20px" }}
+            value={linkCode}
+          />
+        )}
         <FormControl mb={5}>
           <TextInput
             title="Número de confirmação"
@@ -49,20 +57,13 @@ function ContentArea() {
 
         <DateInput title="De" />
         <DateInput title="Até" sx={{ marginBottom: "50px" }} />
-        {selectType !== "Serviço" && <Location />}
+        {selectType !== "Serviço" && <Location setLinkQRCode={setLinkCode} />}
 
         <SelectConsultant />
         <DateInput
           title="Data de criação do voucher"
           sx={{ marginBottom: "30px" }}
         />
-        {showQRCODE && (
-          <QRCode
-            size={320}
-            style={{ paddingTop: "20px" }}
-            value={showQRCODE}
-          />
-        )}
       </Stack>
 
       <Product />
@@ -102,7 +103,7 @@ function App() {
         width: "100%",
 
         backgroundImage: selectBackground,
-        backgroundSize: "cover", // ou "100% 100%"
+        backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center center",
         backgroundAttachment: "fixed",
@@ -123,9 +124,9 @@ function App() {
         <Container maxW="1200px">
           <HeaderArea />
         </Container>
-        <Container id="pdf" maxW="1200px" paddingX="30px">
+        <Container id="pdf" maxW="1200px" paddingX="10px">
           <Stack direction={"row"} justifyContent={"space-between"}>
-            <Stack direction={"row"} spacing={"50px"}>
+            <Stack direction={"row"} spacing={"10px"}>
               <SelectLogo />
               <ContactArea />
             </Stack>
@@ -141,7 +142,7 @@ function App() {
             maxW="1200px"
             paddingX="30px"
           >
-            <Divider sx={{ marginY: "30px" }} />
+            <Divider sx={{ marginY: "30px", border: "1px dashed #EDF2F7" }} />
             <ContentArea />
             {!showPreview && (
               <>

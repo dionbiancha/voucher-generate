@@ -25,17 +25,21 @@ interface LocationProps {
   link?: string;
 }
 
+interface Props {
+  setLinkQRCode: (value: string) => void;
+}
+
 function ItemList({ title, value }: ItemListOption) {
   const { t } = useTranslation();
   return (
-    <p style={{ margin: "5px" }}>
+    <p style={{ marginBottom: "5px" }}>
       {t(`${title}`)}: <span style={{ fontWeight: 400 }}>{value}</span>
     </p>
   );
 }
 
-function Location() {
-  const { showPreview, setShowQRCODE } = usePreview();
+function Location({ setLinkQRCode }: Props) {
+  const { showPreview } = usePreview();
   const [isInputDisabled, setIsInputDisabled] = useState(false);
   const { t } = useTranslation();
   const [formState, setFormState] = useState<LocationProps>({
@@ -100,7 +104,7 @@ function Location() {
             value={formState.link}
             onChange={(e) => {
               handleChange("link", e.target.value);
-              setShowQRCODE(e.target.value);
+              setLinkQRCode(e.target.value);
             }}
           />
           <Input
@@ -142,7 +146,7 @@ function Location() {
             sx={{
               marginTop: "20px",
               border: "1px dashed",
-              width: "320px",
+              width: "100%",
               padding: "5px",
               borderRadius: "5px",
               fontSize: "13px",

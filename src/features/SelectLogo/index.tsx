@@ -63,14 +63,12 @@ function SelectLogo() {
       )}
 
       {selectedOptionLogo ? (
-        <Box mt={4}>
-          <Image
-            src={selectedOptionLogo.imagePreviewUrl}
-            alt={`Preview`}
-            boxSize="200px"
-            objectFit="cover"
-          />
-        </Box>
+        <Image
+          src={selectedOptionLogo.imagePreviewUrl}
+          alt={`Preview`}
+          boxSize="150px"
+          objectFit="cover"
+        />
       ) : (
         <Box
           sx={{

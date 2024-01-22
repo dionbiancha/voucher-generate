@@ -86,7 +86,7 @@ function SelectConsultant() {
       </FormControl>
 
       {selectedOptionConsultant ? (
-        <Box mt={4} sx={{ opacity: isInputDisabled ? 0.3 : 1 }}>
+        <Box mt={1} sx={{ opacity: isInputDisabled ? 0.3 : 1 }}>
           {selectedOptionConsultant.value}
         </Box>
       ) : isInputDisabled ? (

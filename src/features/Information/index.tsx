@@ -8,7 +8,6 @@ import {
   Text,
   Stack,
   FormLabel,
-  Divider,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { usePreview } from "../../context/DataContext";
@@ -114,7 +113,7 @@ const Information: React.FC = () => {
           </Stack>
         </Box>
       )}
-      <Divider sx={{ marginY: "30px" }} />
+      <Box sx={{ marginY: "30px" }} />
     </Stack>
   );
 };

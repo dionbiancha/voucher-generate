@@ -95,8 +95,8 @@ function TextInput({
             fontSize: bold ? "30px" : "",
             fontWeight: bold ? "600" : "",
             opacity: isInputDisabled ? 0.3 : 1,
+            width: "100%",
           }}
-          mt={4}
         >
           {formState}
         </Box>
