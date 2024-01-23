@@ -23,6 +23,7 @@ import DateInput from "./components/DateInput";
 import QRCode from "react-qr-code";
 import SelectConsultant from "./features/SelectConsultant";
 import { useTranslation } from "react-i18next";
+import TimeInput from "./components/TimeInput";
 
 function ContentArea() {
   const { selectType } = usePreview();
@@ -30,6 +31,22 @@ function ContentArea() {
   useEffect(() => {
     serviceWorkerRegistration.register();
   }, []);
+
+  function isHotel() {
+    return selectType === "Hotel";
+  }
+
+  function isTransfer() {
+    return selectType === "Transfer";
+  }
+
+  function isPasseio() {
+    return selectType === "Passeio";
+  }
+
+  function isTicket() {
+    return selectType === "Ticket";
+  }
 
   return (
     <Stack width="100%" direction={"row"} justifyContent={"space-between"}>
@@ -50,10 +67,84 @@ function ContentArea() {
             bold
           />
         </FormControl>
+        {isTransfer() && <Divider my={5} />}
 
-        <DateInput title="De" />
-        <DateInput title="Até" sx={{ marginBottom: "50px" }} />
-        {selectType !== "Serviço" && <Location setLinkQRCode={setLinkCode} />}
+        <DateInput title={isTransfer() ? "Chegada" : "De"} />
+        {isTransfer() && (
+          <>
+            <FormControl my={4}>
+              <TextInput
+                title="Aeroporto"
+                placeholder="Digite o nome do aeroporto"
+                emptyText="Nenhum dado encontrado"
+              />
+            </FormControl>
+
+            <TimeInput title={"Horário"} />
+
+            <FormControl my={4}>
+              <TextInput
+                title="Voo"
+                placeholder="Digite o voo"
+                emptyText="Nenhum voo encontrado"
+              />
+            </FormControl>
+            <FormControl my={4}>
+              <TextInput
+                title="Hotel"
+                placeholder="Digite o nome do hotel"
+                emptyText="Nenhum hotel encontrado"
+              />
+            </FormControl>
+
+            <Divider my={5} />
+          </>
+        )}
+        <DateInput title={isTransfer() ? "Saída" : "Até"} />
+        {isTransfer() && (
+          <>
+            <FormControl my={4}>
+              <TextInput
+                title="Hotel"
+                placeholder="Digite o nome do hotel"
+                emptyText="Nenhum dado encontrado"
+              />
+            </FormControl>
+
+            <TimeInput title={"Horário de pick up"} />
+
+            <FormControl my={4}>
+              <TextInput
+                title="Aeroporto"
+                placeholder="Digite o nome do aeroporto"
+                emptyText="Nenhum aeroporto encontrado"
+              />
+            </FormControl>
+
+            <TimeInput title={"Horário do voo"} />
+
+            <FormControl my={4}>
+              <TextInput
+                title="Voo"
+                placeholder="Digite o voo"
+                emptyText="Nenhum voo encontrado"
+              />
+            </FormControl>
+
+            <Divider />
+          </>
+        )}
+
+        {isTransfer() && (
+          <FormControl my={4}>
+            <TextInput
+              title="Telefone do pax"
+              placeholder="Digite o telefone"
+              emptyText="Nenhum telefone encontrado"
+            />
+          </FormControl>
+        )}
+        {isHotel() && <Location setLinkQRCode={setLinkCode} />}
 
         <SelectConsultant />
         <DateInput
@@ -135,9 +226,13 @@ function App() {
         <HeaderArea />
 
         <Box maxWidth="1200px" width="100%" id="pdf">
-          <Stack direction={"row"} justifyContent={"space-between"}>
-            <Image sx={{ width: "200px" }} src={"logos/arkbeds.png"} />
-            <p style={{ fontSize: "40px", fontWeight: "600" }}>Voucher</p>
+          <Stack
+            direction={"row"}
+            justifyContent={"space-between"}
+            alignItems={"center"}
+          >
+            <Image sx={{ height: "30px" }} src={"logos/arkbeds.png"} />
+            <p style={{ fontSize: "30px", fontWeight: "600" }}>Voucher</p>
           </Stack>
           <Divider sx={{ marginY: "30px", border: "1px dashed #EDF2F7" }} />
           <Stack direction={"row"} spacing={"10px"}>

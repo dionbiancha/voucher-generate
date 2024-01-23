@@ -16,7 +16,6 @@ import Information from "../Information";
 import HotelIcon from "@mui/icons-material/Hotel";
 import TransferWithinAStationIcon from "@mui/icons-material/TransferWithinAStation";
 import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
-import RoomServiceIcon from "@mui/icons-material/RoomService";
 import FestivalIcon from "@mui/icons-material/Festival";
 
 interface FormData {
@@ -42,7 +41,6 @@ function IconSelect(value?: string) {
       {value === "Transfer" && <TransferWithinAStationIcon />}
       {value === "Passeio" && <FestivalIcon />}
       {value === "Ticket" && <ConfirmationNumberIcon />}
-      {value === "Serviço" && <RoomServiceIcon />}
     </Stack>
   );
 }
@@ -72,7 +70,7 @@ function ProductItem() {
     <Box sx={{ maxWidth: "700px", width: "100%" }}>
       <Information />
       <FormControl>
-        <FormLabel>{t("Tipo")}</FormLabel>
+        <FormLabel>{t("Serviço")}</FormLabel>
         {!showPreview && (
           <Select
             marginBottom={"10px"}
@@ -84,7 +82,6 @@ function ProductItem() {
             <option value="Transfer">{t("Transfer")}</option>
             <option value="Passeio">{t("Passeio")}</option>
             <option value="Ticket">{t("Ticket")}</option>
-            <option value="Serviço">{t("Serviço")}</option>
           </Select>
         )}
         {IconSelect(formData.type)}
@@ -119,37 +116,6 @@ function ProductItem() {
           </FormControl>
         </>
       )}
-
-      {formData.type === "Service" && (
-        <>
-          <FormControl mt={10}>
-            <TextInput
-              isTextArea
-              title="Título"
-              placeholder="Preencha seu titulo"
-              emptyText="Nenhum titulo encontrado"
-            />
-          </FormControl>
-
-          <FormControl mt={10}>
-            <TextInput
-              isTextArea
-              title="Regime de serviço"
-              placeholder="Preencha seu regime de serviço"
-              emptyText="Nenhum dado encontrado"
-            />
-          </FormControl>
-
-          <FormControl mt={10}>
-            <TextInput
-              isTextArea
-              title="Detalhes do serviço"
-              placeholder="Preencha os detalhes do serviço"
-              emptyText="Nenhum dado encontrado"
-            />
-          </FormControl>
-        </>
-      )}
       <Box sx={{ marginY: "30px" }} />
       <TextInput
         isTextArea
@@ -173,7 +139,8 @@ function ProductItem() {
 function Product() {
   const { t } = useTranslation();
   const toast = useToast();
-  const { showPreview } = usePreview();
+  const { showPreview, selectType } = usePreview();
+
   const [additionalAreas, setAdditionalAreas] = useState<
     Record<string, unknown>[]
   >([]);
@@ -185,7 +152,7 @@ function Product() {
   const removeAdditionalArea = (index: number) => {
     setAdditionalAreas((prevAreas) => prevAreas.filter((_, i) => i !== index));
     toast({
-      title: "Produto deletado com sucesso!",
+      title: "Quarto deletado com sucesso!",
       position: "top-right",
       status: "success",
       duration: 3000,
@@ -201,8 +168,10 @@ function Product() {
         paddingLeft: "20px",
       }}
     >
-      {!showPreview && (
-        <Box sx={{ fontSize: "30px" }}>{`${t("Produto")} 1`}</Box>
+      {!showPreview && selectType && (
+        <Box sx={{ fontSize: "25px" }}>{`${t(`${selectType}`)} ${
+          additionalAreas.length > 0 ? "1" : ""
+        }`}</Box>
       )}
 
       <ProductItem />
@@ -214,9 +183,9 @@ function Product() {
             alignItems={"center"}
             marginBottom={"30px"}
           >
-            {!showPreview && (
+            {!showPreview && selectType && (
               <>
-                <Box sx={{ fontSize: "30px" }}>{`${t("Produto")} ${
+                <Box sx={{ fontSize: "20px" }}>{`${t(`${selectType}`)} ${
                   index + 2
                 }`}</Box>
                 <Button
@@ -232,7 +201,7 @@ function Product() {
         </>
       ))}
 
-      {!showPreview && (
+      {!showPreview && selectType === "Hotel" && (
         <Button
           mt="15px"
           width="100%"
@@ -241,7 +210,7 @@ function Product() {
           paddingY="25px"
           colorScheme="gray"
         >
-          {t("Adicionar produto")}
+          {t("Adicionar Quarto")}
         </Button>
       )}
     </Box>
