@@ -40,13 +40,13 @@ function ContentArea() {
     return selectType === "Transfer";
   }
 
-  function isPasseio() {
-    return selectType === "Passeio";
-  }
+  // function isPasseio() {
+  //   return selectType === "Passeio";
+  // }
 
-  function isTicket() {
-    return selectType === "Ticket";
-  }
+  // function isTicket() {
+  //   return selectType === "Ticket";
+  // }
 
   return (
     <Stack width="100%" direction={"row"} justifyContent={"space-between"}>
