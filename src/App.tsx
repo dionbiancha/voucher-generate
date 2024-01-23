@@ -63,7 +63,6 @@ function ContentArea() {
           <TextInput
             title="Número de confirmação"
             placeholder="Digite o número de confirmação"
-            emptyText="Nenhum número encontrado"
             bold
           />
         </FormControl>
@@ -76,25 +75,16 @@ function ContentArea() {
               <TextInput
                 title="Aeroporto"
                 placeholder="Digite o nome do aeroporto"
-                emptyText="Nenhum dado encontrado"
               />
             </FormControl>
 
             <TimeInput title={"Horário"} />
 
             <FormControl my={4}>
-              <TextInput
-                title="Voo"
-                placeholder="Digite o voo"
-                emptyText="Nenhum voo encontrado"
-              />
+              <TextInput title="Voo" placeholder="Digite o voo" />
             </FormControl>
             <FormControl my={4}>
-              <TextInput
-                title="Hotel"
-                placeholder="Digite o nome do hotel"
-                emptyText="Nenhum hotel encontrado"
-              />
+              <TextInput title="Hotel" placeholder="Digite o nome do hotel" />
             </FormControl>
 
             <Divider my={5} />
@@ -104,11 +94,7 @@ function ContentArea() {
         {isTransfer() && (
           <>
             <FormControl my={4}>
-              <TextInput
-                title="Hotel"
-                placeholder="Digite o nome do hotel"
-                emptyText="Nenhum dado encontrado"
-              />
+              <TextInput title="Hotel" placeholder="Digite o nome do hotel" />
             </FormControl>
 
             <TimeInput title={"Horário de pick up"} />
@@ -117,18 +103,13 @@ function ContentArea() {
               <TextInput
                 title="Aeroporto"
                 placeholder="Digite o nome do aeroporto"
-                emptyText="Nenhum aeroporto encontrado"
               />
             </FormControl>
 
             <TimeInput title={"Horário do voo"} />
 
             <FormControl my={4}>
-              <TextInput
-                title="Voo"
-                placeholder="Digite o voo"
-                emptyText="Nenhum voo encontrado"
-              />
+              <TextInput title="Voo" placeholder="Digite o voo" />
             </FormControl>
 
             <Divider />
@@ -140,7 +121,6 @@ function ContentArea() {
             <TextInput
               title="Telefone do pax"
               placeholder="Digite o telefone"
-              emptyText="Nenhum telefone encontrado"
             />
           </FormControl>
         )}

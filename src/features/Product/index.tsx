@@ -30,19 +30,10 @@ interface FormData {
 
 function IconSelect(value?: string) {
   if (!value) return <></>;
-  return (
-    <Stack
-      direction={"row"}
-      justifyContent={"space-between"}
-      alignItems={"center"}
-    >
-      <Box>{value}</Box>
-      {value === "Hotel" && <HotelIcon />}
-      {value === "Transfer" && <TransferWithinAStationIcon />}
-      {value === "Passeio" && <FestivalIcon />}
-      {value === "Ticket" && <ConfirmationNumberIcon />}
-    </Stack>
-  );
+  if (value === "Hotel") return <HotelIcon />;
+  if (value === "Transfer") return <TransferWithinAStationIcon />;
+  if (value === "Passeio") return <FestivalIcon />;
+  if (value === "Ticket") return <ConfirmationNumberIcon />;
 }
 
 function ProductItem() {
@@ -67,7 +58,7 @@ function ProductItem() {
   };
 
   return (
-    <Box sx={{ maxWidth: "700px", width: "100%" }}>
+    <Box sx={{ maxWidth: "800px", width: "100%" }}>
       <Information />
       <FormControl>
         <FormLabel>{t("Serviço")}</FormLabel>
@@ -84,7 +75,6 @@ function ProductItem() {
             <option value="Ticket">{t("Ticket")}</option>
           </Select>
         )}
-        {IconSelect(formData.type)}
       </FormControl>
 
       {formData.type === "Hotel" && (
@@ -94,7 +84,6 @@ function ProductItem() {
               isTextArea
               title="Tipo de quarto"
               placeholder="Preencha o tipo do quarto"
-              emptyText="Nenhum dado encontrado"
             />
           </FormControl>
           <FormControl mt={10}>
@@ -102,7 +91,6 @@ function ProductItem() {
               isTextArea
               title="Regime da hospedagem"
               placeholder="Preencha o regime da hospedagem"
-              emptyText="Nenhum dado encontrado"
             />
           </FormControl>
 
@@ -111,7 +99,6 @@ function ProductItem() {
               isTextArea
               title="Detalhes da hospedagem"
               placeholder="Preencha os detalhes da hospedagem"
-              emptyText="Nenhum dado encontrado"
             />
           </FormControl>
         </>
@@ -121,14 +108,12 @@ function ProductItem() {
         isTextArea
         title="Política de cancelamento"
         placeholder="Digite sua política de cancelamento"
-        emptyText="Nenhum dado encontrado"
       />
       <Box sx={{ marginY: "30px" }} />
       <TextInput
         isTextArea
         title="Observações"
         placeholder="Digite suas observações"
-        emptyText="Nenhuma observação encontrada"
       />
 
       <Divider sx={{ marginY: "30px", border: "1px dashed #EDF2F7" }} />
@@ -164,15 +149,21 @@ function Product() {
     <Box
       sx={{
         width: "100%",
-
         paddingLeft: "20px",
       }}
     >
-      {!showPreview && selectType && (
-        <Box sx={{ fontSize: "25px" }}>{`${t(`${selectType}`)} ${
-          additionalAreas.length > 0 ? "1" : ""
-        }`}</Box>
-      )}
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+      >
+        {!showPreview && selectType && (
+          <Box sx={{ fontSize: "25px" }}>{`${t(`${selectType}`)} ${
+            additionalAreas.length > 0 ? "1" : ""
+          }`}</Box>
+        )}
+        {IconSelect(selectType)}
+      </Stack>
 
       <ProductItem />
       {additionalAreas.map((_, index) => (

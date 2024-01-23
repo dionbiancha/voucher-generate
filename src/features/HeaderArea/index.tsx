@@ -25,9 +25,9 @@ function HeaderArea() {
     const config = {
       margin: 1,
       filename: "Voucher.pdf",
-      image: { type: "jpeg", quality: 0.98 },
+      image: { type: "jpeg", quality: 1 },
       html2canvas: { scale: 2 },
-      jsPDF: { unit: "in", format: "a3", orientation: "portrait" },
+      jsPDF: { unit: "in", format: "b3", orientation: "portrait" },
     };
     const element = document.getElementById("pdf"); // Substitua 'conteudo' pelo ID do elemento que você quer converter para PDF
     html2pdf(element, config);

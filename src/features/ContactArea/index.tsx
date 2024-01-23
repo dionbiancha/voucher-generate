@@ -62,6 +62,8 @@ function ContactArea() {
     setSelectedOptionContact(selected);
   };
 
+  if (showPreview && !selectedOptionContact) return <></>;
+
   return (
     <Box sx={{ maxWidth: "500px" }}>
       {!showPreview && (
@@ -82,25 +84,12 @@ function ContactArea() {
         </FormControl>
       )}
 
-      {selectedOptionContact ? (
+      {selectedOptionContact && (
         <Box mt={4} style={{ fontWeight: 500 }}>
           <ItemList title="Agência" value={selectedOptionContact.agency} />
           <ItemList title="Operador" value={selectedOptionContact.value} />
 
           <ItemList title="Emergências" value={selectedOptionContact.phone} />
-        </Box>
-      ) : (
-        <Box
-          sx={{
-            marginTop: "20px",
-            border: "1px dashed",
-            width: "300px",
-            padding: "5px",
-            borderRadius: "5px",
-            fontSize: "13px",
-          }}
-        >
-          {t("Nenhum contato selecionado")}
         </Box>
       )}
     </Box>

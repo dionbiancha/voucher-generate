@@ -42,6 +42,8 @@ function SelectLogo() {
     setSelectedOptionLogo(selected);
   };
 
+  if (showPreview && !selectedOptionLogo) return <></>;
+
   return (
     <Box>
       {!showPreview && (
@@ -62,26 +64,13 @@ function SelectLogo() {
         </FormControl>
       )}
 
-      {selectedOptionLogo ? (
+      {selectedOptionLogo && (
         <Image
           src={selectedOptionLogo.imagePreviewUrl}
           alt={`Preview`}
           boxSize="150px"
           objectFit="cover"
         />
-      ) : (
-        <Box
-          sx={{
-            marginTop: "20px",
-            border: "1px dashed",
-            width: "200px",
-            padding: "5px",
-            borderRadius: "5px",
-            fontSize: "13px",
-          }}
-        >
-          {t("Nenhum item selecionado")}
-        </Box>
       )}
     </Box>
   );

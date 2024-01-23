@@ -1,14 +1,9 @@
 import { useState } from "react";
-import { Box, Button, FormLabel, Input, Stack } from "@chakra-ui/react";
+import { Box, FormLabel, Input, Stack } from "@chakra-ui/react";
 import { addDays, format } from "date-fns"; // Importa a função format do date-fns
 
 import { useTranslation } from "react-i18next";
 import { usePreview } from "../../context/DataContext";
-
-interface ItemListOption {
-  value: string;
-  title: string;
-}
 
 interface DateInputProps {
   title: string;
@@ -17,32 +12,11 @@ interface DateInputProps {
   };
 }
 
-function ItemList({ title, value }: ItemListOption) {
-  const { t } = useTranslation();
-  return (
-    <p>
-      {t(`${title}`)}: <span style={{ fontWeight: 400 }}>{value}</span>
-    </p>
-  );
-}
-
 function DateInput({ title, sx }: DateInputProps) {
   const { showPreview } = usePreview();
-  const [isInputDisabled, setIsInputDisabled] = useState(false);
   const { t } = useTranslation();
   const [formState, setFormState] = useState<string>("");
-
-  const handleEnableInput = () => {
-    setIsInputDisabled(!isInputDisabled);
-  };
-
-  function isEmpty() {
-    if (formState) return false;
-    return true;
-  }
-
-  if (showPreview && isInputDisabled) return <></>;
-
+  if (showPreview && !formState) return <></>;
   return (
     <Box sx={sx}>
       <Stack
@@ -50,21 +24,10 @@ function DateInput({ title, sx }: DateInputProps) {
         justifyContent={"space-between"}
         mt={!showPreview ? "20px" : ""}
       >
-        {!showPreview && (
-          <FormLabel sx={{ opacity: isInputDisabled ? 0.3 : 1 }}>
-            {t(`${title}`)}
-          </FormLabel>
-        )}
-
-        {!showPreview && (
-          <Button h="1.75rem" size="sm" onClick={handleEnableInput}>
-            {isInputDisabled ? t("Exibir") : t("Esconder")}
-          </Button>
-        )}
+        <FormLabel>{t(`${title}`)}</FormLabel>
       </Stack>
       {!showPreview && (
         <Input
-          disabled={isInputDisabled}
           type="date"
           sx={{ marginY: "5px" }}
           value={formState}
@@ -72,45 +35,14 @@ function DateInput({ title, sx }: DateInputProps) {
         />
       )}
 
-      {isEmpty() ? (
-        isInputDisabled ? (
-          <></>
-        ) : (
-          <>
-            {showPreview && !formState && (
-              <FormLabel sx={{ opacity: isInputDisabled ? 0.3 : 1 }}>
-                {t(`${title}`)}
-              </FormLabel>
-            )}
-
-            <Box
-              sx={{
-                marginTop: "20px",
-                border: "1px dashed",
-                width: "100%",
-                padding: "5px",
-                borderRadius: "5px",
-                fontSize: "13px",
-              }}
-            >
-              {t("Nenhuma data encontrada")}
-            </Box>
-          </>
-        )
-      ) : (
+      {showPreview && formState && (
         <Box
-          mt={4}
-          style={{
-            fontWeight: 500,
-            opacity: isInputDisabled ? 0.3 : 1,
+          sx={{
+            opacity: 1,
+            width: "100%",
           }}
         >
-          {formState && showPreview && (
-            <ItemList
-              title={title}
-              value={format(addDays(new Date(formState), 1), "dd/MM/yyyy")}
-            />
-          )}
+          {format(addDays(new Date(formState), 1), "dd/MM/yyyy")}
         </Box>
       )}
     </Box>
