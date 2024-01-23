@@ -1,12 +1,5 @@
 import { useState } from "react";
-import {
-  Box,
-  Button,
-  FormControl,
-  FormLabel,
-  Input,
-  Stack,
-} from "@chakra-ui/react";
+import { Box, FormControl, FormLabel, Input, Stack } from "@chakra-ui/react";
 
 import { useTranslation } from "react-i18next";
 import { usePreview } from "../../context/DataContext";
@@ -40,7 +33,6 @@ function ItemList({ title, value }: ItemListOption) {
 
 function Location({ setLinkQRCode }: Props) {
   const { showPreview } = usePreview();
-  const [isInputDisabled, setIsInputDisabled] = useState(false);
   const { t } = useTranslation();
   const [formState, setFormState] = useState<LocationProps>({
     name: "",
@@ -57,13 +49,8 @@ function Location({ setLinkQRCode }: Props) {
     }));
   };
 
-  const handleEnableInput = () => {
-    setIsInputDisabled(!isInputDisabled);
-  };
-
   function isEmpty() {
     if (
-      formState.link ||
       formState.address ||
       formState.city ||
       formState.country ||
@@ -74,31 +61,22 @@ function Location({ setLinkQRCode }: Props) {
     return true;
   }
 
-  if (showPreview && isInputDisabled) return <></>;
+  if (showPreview && isEmpty()) return <></>;
 
   return (
     <Box>
       <Stack direction={"row"} justifyContent={"space-between"}>
-        <FormLabel sx={{ opacity: isInputDisabled ? 0.3 : 1 }}>
-          {t("Localização")}
-        </FormLabel>
-        {!showPreview && (
-          <Button h="1.75rem" size="sm" onClick={handleEnableInput}>
-            {isInputDisabled ? t("Exibir") : t("Esconder")}
-          </Button>
-        )}
+        <FormLabel>{t("Localização")}</FormLabel>
       </Stack>
       {!showPreview && (
         <FormControl>
           <Input
-            disabled={isInputDisabled}
             sx={{ marginY: "5px" }}
             placeholder={t("Nome")}
             value={formState.name}
             onChange={(e) => handleChange("name", e.target.value)}
           />
           <Input
-            disabled={isInputDisabled}
             sx={{ marginY: "5px" }}
             placeholder={t("Link QR Code")}
             value={formState.link}
@@ -108,28 +86,24 @@ function Location({ setLinkQRCode }: Props) {
             }}
           />
           <Input
-            disabled={isInputDisabled}
             sx={{ marginY: "5px" }}
             placeholder={t("Endereço")}
             value={formState.address}
             onChange={(e) => handleChange("address", e.target.value)}
           />
           <Input
-            disabled={isInputDisabled}
             sx={{ marginY: "5px" }}
             placeholder={t("Cidade")}
             value={formState.city}
             onChange={(e) => handleChange("city", e.target.value)}
           />
           <Input
-            disabled={isInputDisabled}
             sx={{ marginY: "5px" }}
             placeholder={t("Estado")}
             value={formState.state}
             onChange={(e) => handleChange("state", e.target.value)}
           />
           <Input
-            disabled={isInputDisabled}
             sx={{ marginY: "5px" }}
             placeholder={t("País")}
             value={formState.country}
@@ -138,28 +112,8 @@ function Location({ setLinkQRCode }: Props) {
         </FormControl>
       )}
 
-      {isEmpty() ? (
-        isInputDisabled ? (
-          <></>
-        ) : (
-          <Box
-            sx={{
-              marginTop: "20px",
-              border: "1px dashed",
-              width: "100%",
-              padding: "5px",
-              borderRadius: "5px",
-              fontSize: "13px",
-            }}
-          >
-            {t("Nenhuma localização encontrada")}
-          </Box>
-        )
-      ) : (
-        <Box
-          mt={4}
-          style={{ fontWeight: 500, opacity: isInputDisabled ? 0.3 : 1 }}
-        >
+      {isEmpty() && (
+        <Box mt={4} style={{ fontWeight: 500 }}>
           {formState.name && <ItemList title="Nome" value={formState.name} />}
           {formState.address && (
             <ItemList title="Endereço" value={formState.address} />

@@ -158,9 +158,7 @@ function Product() {
         alignItems={"center"}
       >
         {!showPreview && selectType && (
-          <Box sx={{ fontSize: "25px" }}>{`${t(`${selectType}`)} ${
-            additionalAreas.length > 0 ? "1" : ""
-          }`}</Box>
+          <Box sx={{ fontSize: "20px" }}>{`${t(`${selectType}`)}`}</Box>
         )}
         {IconSelect(selectType)}
       </Stack>
@@ -176,9 +174,7 @@ function Product() {
           >
             {!showPreview && selectType && (
               <>
-                <Box sx={{ fontSize: "20px" }}>{`${t(`${selectType}`)} ${
-                  index + 2
-                }`}</Box>
+                <Box sx={{ fontSize: "20px" }}>{`${t(`Quarto`)}`}</Box>
                 <Button
                   onClick={() => removeAdditionalArea(index)}
                   colorScheme="red"

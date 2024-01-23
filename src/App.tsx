@@ -44,9 +44,9 @@ function ContentArea() {
   //   return selectType === "Passeio";
   // }
 
-  // function isTicket() {
-  //   return selectType === "Ticket";
-  // }
+  function isTicket() {
+    return selectType === "Ticket";
+  }
 
   return (
     <Stack width="100%" direction={"row"} justifyContent={"space-between"}>
@@ -66,7 +66,7 @@ function ContentArea() {
             bold
           />
         </FormControl>
-        {isTransfer() && <Divider my={5} />}
+        {isTransfer() && <Divider />}
 
         <DateInput title={isTransfer() ? "Chegada" : "De"} />
         {isTransfer() && (
@@ -87,7 +87,7 @@ function ContentArea() {
               <TextInput title="Hotel" placeholder="Digite o nome do hotel" />
             </FormControl>
 
-            <Divider my={5} />
+            <Divider />
           </>
         )}
         <DateInput title={isTransfer() ? "Saída" : "Até"} />
@@ -116,7 +116,7 @@ function ContentArea() {
           </>
         )}
 
-        {isTransfer() && (
+        {!isHotel() && (
           <FormControl my={4}>
             <TextInput
               title="Telefone do pax"
