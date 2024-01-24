@@ -24,6 +24,7 @@ import QRCode from "react-qr-code";
 import SelectConsultant from "./features/SelectConsultant";
 import { useTranslation } from "react-i18next";
 import TimeInput from "./components/TimeInput";
+import SelectCompany from "./features/SelectCompany";
 
 function ContentArea() {
   const { selectType } = usePreview();
@@ -124,7 +125,12 @@ function ContentArea() {
             />
           </FormControl>
         )}
-        {isHotel() && <Location setLinkQRCode={setLinkCode} />}
+        {isHotel() && (
+          <>
+            <Location setLinkQRCode={setLinkCode} />
+            <SelectCompany />
+          </>
+        )}
 
         <SelectConsultant />
         <DateInput
@@ -184,6 +190,7 @@ function App() {
         alignItems: "center",
         justifyContent: "center",
         width: "100%",
+        minHeight: "100vh",
         backgroundImage: selectBackground,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
@@ -193,13 +200,13 @@ function App() {
     >
       <Stack
         sx={{
+          minHeight: "100vh",
           backgroundColor: isLight() ? "#FFFFFF" : "#1A202C",
           color: isLight() ? "#000000" : "#FFFFFF",
         }}
         maxWidth="1200px"
         width="100%"
         direction={"column"}
-        justifyContent={"center"}
         padding="30px"
         alignItems={"center"}
       >

@@ -56,8 +56,9 @@ function Location({ setLinkQRCode }: Props) {
       formState.country ||
       formState.name ||
       formState.state
-    )
+    ) {
       return false;
+    }
     return true;
   }
 
@@ -112,7 +113,7 @@ function Location({ setLinkQRCode }: Props) {
         </FormControl>
       )}
 
-      {isEmpty() && (
+      {!isEmpty() && showPreview && (
         <Box mt={4} style={{ fontWeight: 500 }}>
           {formState.name && <ItemList title="Nome" value={formState.name} />}
           {formState.address && (

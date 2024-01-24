@@ -14,9 +14,9 @@ import { usePreview } from "../../context/DataContext";
 import TextInput from "../../components/TextInput";
 import Information from "../Information";
 import HotelIcon from "@mui/icons-material/Hotel";
-import TransferWithinAStationIcon from "@mui/icons-material/TransferWithinAStation";
 import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
-import FestivalIcon from "@mui/icons-material/Festival";
+import TourIcon from "@mui/icons-material/Tour";
+import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 
 interface FormData {
   type: string;
@@ -31,8 +31,8 @@ interface FormData {
 function IconSelect(value?: string) {
   if (!value) return <></>;
   if (value === "Hotel") return <HotelIcon />;
-  if (value === "Transfer") return <TransferWithinAStationIcon />;
-  if (value === "Passeio") return <FestivalIcon />;
+  if (value === "Transfer") return <DirectionsCarIcon />;
+  if (value === "Passeio") return <TourIcon />;
   if (value === "Ticket") return <ConfirmationNumberIcon />;
 }
 
