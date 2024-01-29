@@ -56,7 +56,12 @@ const Information: React.FC = () => {
 
   return (
     <Stack direction={"column"}>
-      <FormLabel sx={{ marginTop: "10px" }}>{t("Informações")}</FormLabel>
+      {peopleList.length > 0 && showPreview && (
+        <FormLabel sx={{ marginTop: "10px" }}>{t("Informações")}</FormLabel>
+      )}
+      {!showPreview && (
+        <FormLabel sx={{ marginTop: "10px" }}>{t("Informações")}</FormLabel>
+      )}
       {!showPreview && (
         <Stack direction={"row"}>
           <Input
