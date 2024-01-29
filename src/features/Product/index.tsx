@@ -61,19 +61,21 @@ function ProductItem() {
     <Box sx={{ maxWidth: "800px", width: "100%" }}>
       <Information />
       <FormControl>
-        <FormLabel>{t("Serviço")}</FormLabel>
         {!showPreview && (
-          <Select
-            marginBottom={"10px"}
-            placeholder={t("Selecione o serviço")}
-            onChange={handleTypeChange}
-            value={formData.type}
-          >
-            <option value="Hotel">{t("Hotel")}</option>
-            <option value="Transfer">{t("Transfer")}</option>
-            <option value="Passeio">{t("Passeio")}</option>
-            <option value="Ticket">{t("Ticket")}</option>
-          </Select>
+          <>
+            <FormLabel>{t("Serviço")}</FormLabel>
+            <Select
+              marginBottom={"10px"}
+              placeholder={t("Selecione o serviço")}
+              onChange={handleTypeChange}
+              value={formData.type}
+            >
+              <option value="Hotel">{t("Hotel")}</option>
+              <option value="Transfer">{t("Transfer")}</option>
+              <option value="Passeio">{t("Passeio")}</option>
+              <option value="Ticket">{t("Ticket")}</option>
+            </Select>
+          </>
         )}
       </FormControl>
 
@@ -157,7 +159,7 @@ function Product() {
         justifyContent={"space-between"}
         alignItems={"center"}
       >
-        {!showPreview && selectType && (
+        {selectType && (
           <Box sx={{ fontSize: "20px" }}>{`${t(`${selectType}`)}`}</Box>
         )}
         {IconSelect(selectType)}
