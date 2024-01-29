@@ -20,17 +20,15 @@ const optionsLogo: Option[] = [
     agency: "ARKBEDS",
   },
   {
-    value: "Joao das Neves",
-    label: "Joao das Neves",
-    phone:
-      "+55 45 3521-8585 ( APENAS LIGAÇÕES) +55 43 3032-2855 ( WHATSAPP - ATENDIMENTO ELETRÔNICO)",
+    value: "Joao da Silva",
+    label: "Joao da Silva",
+    phone: "+55 45 3521-8585",
     agency: "ARKBEDS",
   },
   {
-    value: "Piriquito do governo",
-    label: "Piriquito do governo",
-    phone:
-      "+55 45 3521-8585 ( APENAS LIGAÇÕES) +55 43 3032-2855 ( WHATSAPP - ATENDIMENTO ELETRÔNICO)",
+    value: "Maria Rojo",
+    label: "Maria Rojo",
+    phone: "+55 45 3521-8578",
     agency: "ARKBEDS",
   },
 ];

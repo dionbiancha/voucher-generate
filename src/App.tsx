@@ -118,19 +118,17 @@ function ContentArea() {
         )}
 
         {!isHotel() && (
-          <FormControl my={4}>
-            <TextInput
-              title="Telefone do pax"
-              placeholder="Digite o telefone"
-            />
-          </FormControl>
-        )}
-        {isHotel() && (
           <>
-            <Location setLinkQRCode={setLinkCode} />
+            <FormControl my={4}>
+              <TextInput
+                title="Telefone do pax"
+                placeholder="Digite o telefone"
+              />
+            </FormControl>
             <SelectCompany />
           </>
         )}
+        {isHotel() && <Location setLinkQRCode={setLinkCode} />}
 
         <SelectConsultant />
         <DateInput

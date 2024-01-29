@@ -11,16 +11,16 @@ type Option = {
 
 const optionsLogo: Option[] = [
   {
-    value: "Lerigou da silva",
-    label: "Lerigou da silva",
+    value: "João França",
+    label: "João França",
   },
   {
-    value: "Zé gotinha",
-    label: "Zé gotinha",
+    value: "Luiza Milioli",
+    label: "Luiza Milioli",
   },
   {
-    value: "Irineu da cunha",
-    label: "Irineu da cunha",
+    value: "Cleber da Cunha",
+    label: "Cleber da Cunha",
   },
 ];
 

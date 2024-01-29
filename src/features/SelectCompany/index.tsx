@@ -47,10 +47,10 @@ function SelectCompany() {
     <Box sx={{ maxWidth: "500px", marginTop: "20px" }}>
       {!showPreview && (
         <FormControl>
-          <FormLabel>{t("Selecione um contato")}</FormLabel>
+          <FormLabel>{t("Selecione uma companhia")}</FormLabel>
           <Select
-            placeholder={t("Nenhum contato selecionado")}
-            width="300px"
+            placeholder={t("Nenhuma companhia selecionada")}
+            width="100%"
             onChange={handleSelectContact}
             value={selectedOptionCompany?.value || ""}
           >
