@@ -22,6 +22,7 @@ function HeaderArea() {
   };
 
   const handleDownload = () => {
+    setShowPreview(true);
     const config = {
       margin: 1,
       filename: "Voucher.pdf",
@@ -31,6 +32,7 @@ function HeaderArea() {
     };
     const element = document.getElementById("pdf"); // Substitua 'conteudo' pelo ID do elemento que você quer converter para PDF
     html2pdf(element, config);
+    setTimeout(() => setShowPreview(false), 1);
   };
 
   useEffect(() => {
